@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        curly: true,
+        curly: false,
         eqeqeq: true,
         immed: true,
         latedef: true,
@@ -44,7 +44,9 @@ module.exports = function(grunt) {
         unused: true,
         boss: true,
         eqnull: true,
-        globals: {}
+        globals: {
+          jQuery: true
+        }
       },
       gruntfile: {
         src: 'Gruntfile.js'
@@ -63,8 +65,7 @@ module.exports = function(grunt) {
           reload: true
         },
         files: ['<%= jshint.main.src %>', 'sass/*.scss'],
-        // tasks: ['jshint:main', 'sass:dist_exp']
-        tasks: ['sass', 'copy']
+        tasks: ['jshint:main', 'sass', 'copy']
       }
     },
     sass: {
@@ -74,17 +75,17 @@ module.exports = function(grunt) {
           compass: true
         },
         files: {
-          'dist/<%= pkg.name %>.min.css': 'sass/*.scss'
+          'dist/<%= pkg.name %>.min.css': 'sass/<%= pkg.name %>.scss'
         }
       },
-      dist_exp: {
+      dist_map: {
         options: {
           style: 'expanded',
           sourcemap: true,
           compass: true
         },
         files: {
-          'dist/<%= pkg.name %>.css': 'sass/*.scss'
+          'dist/<%= pkg.name %>.css': 'sass/<%= pkg.name %>.scss'
         }
       }
     },
@@ -96,10 +97,14 @@ module.exports = function(grunt) {
         dest: 'demo/',
         filter: 'isFile'
       }
+    },
+    clean: {
+      dist: ['dist']
     }
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -108,9 +113,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  // grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass']);
-  grunt.registerTask('default', ['concat', 'uglify', 'sass']);
+  grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'sass']);
 
-  grunt.registerTask('demo', ['copy']);
+  grunt.registerTask('demo', ['default', 'copy']);
 
 };

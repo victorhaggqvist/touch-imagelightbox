@@ -1,5 +1,5 @@
 {
-  "name": "imagelightbox",
+  "name": "touch-imagelightbox",
   "version": "0.1.0",
   "description": "A touch-friendly image lightbox",
   "scripts": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/victorhaggqvist/imagelightbox"
+    "url": "github.com/victorhaggqvist/touch-imagelightbox"
   },
   "keywords": [
     "lightbox",
@@ -20,11 +20,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/victorhaggqvist/imagelightbox/issues"
+    "url": "https://github.com/victorhaggqvist/touch-imagelightbox/issues"
   },
-  "homepage": "https://github.com/victorhaggqvist/imagelightbox",
+  "homepage": "https://github.com/victorhaggqvist/touch-imagelightbox",
   "devDependencies": {
     "grunt": "~0.4.2",
+    "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-jshint": "~0.7.2",
