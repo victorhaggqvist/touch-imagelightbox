@@ -8,9 +8,8 @@ module.exports = function(grunt) {
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
-      ' Licensed <%= pkg.license %>\n' +
-      '* Contributors <%= pkg.contributors.join(", ") %> */\n',
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
       options: {
@@ -18,7 +17,7 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['js/<%= pkg.name %>.js'],
+        src: ['lib/<%= pkg.name %>.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -33,7 +32,7 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        curly: false,
+        curly: true,
         eqeqeq: true,
         immed: true,
         latedef: true,
@@ -44,6 +43,7 @@ module.exports = function(grunt) {
         unused: true,
         boss: true,
         eqnull: true,
+        browser: true,
         globals: {
           jQuery: true
         }
@@ -51,8 +51,8 @@ module.exports = function(grunt) {
       gruntfile: {
         src: 'Gruntfile.js'
       },
-      main: {
-        src: 'js/*.js'
+      lib_test: {
+        src: ['lib/**/*.js', 'test/**/*.js']
       }
     },
     watch: {
@@ -60,61 +60,54 @@ module.exports = function(grunt) {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
-      main: {
+      lib_test: {
+        files: '<%= jshint.lib_test.src %>',
+        tasks: ['jshint:lib_test', 'qunit']
+      }
+    },
+    responsive_images: {
+      full: {
         options: {
-          reload: true
+          engine: 'im',
+          sizes: [{
+            name: 'web',
+            width: 800
+          },
+          {
+            name: 'thumb',
+            height: 150
+          }]
         },
-        files: ['<%= jshint.main.src %>', 'sass/*.scss'],
-        tasks: ['jshint:main', 'sass', 'copy']
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['images/original/*.jpg'],
+          cwd: './',
+          custom_dest: 'images/{%= name %}/'
+        }]
       }
     },
     sass: {
-      dist: {
+      main: {
         options: {
-          style: 'compressed',
-          compass: true
+          style: 'compressed'
         },
         files: {
-          'dist/<%= pkg.name %>.min.css': 'sass/<%= pkg.name %>.scss'
-        }
-      },
-      dist_map: {
-        options: {
-          style: 'expanded',
-          sourcemap: true,
-          compass: true
-        },
-        files: {
-          'dist/<%= pkg.name %>.css': 'sass/<%= pkg.name %>.scss'
+          'demo.css': 'sass/demo.scss'
         }
       }
-    },
-    copy: {
-      demo: {
-        expand: true,
-        flatten: true,
-        src: 'dist/*.min.*',
-        dest: 'demo/',
-        filter: 'isFile'
-      }
-    },
-    clean: {
-      dist: ['dist']
     }
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-responsive-images');
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'sass']);
-
-  grunt.registerTask('demo', ['default', 'copy']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 
 };
