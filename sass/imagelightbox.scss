@@ -1,4 +1,5 @@
 @import 'compass/css3';
+@import 'variables';
 
 @mixin touch-action($value) {
   -ms-touch-action: $value;
@@ -25,18 +26,17 @@ html {
 }
 
 #imagelightbox-loading {
-  $box-size: 20px;
-  @include box-shadow(rgba(0, 0, 0, .75) 0 0 $box-size*2); // 40
+  @include box-shadow(rgba(0, 0, 0, .75) 0 0 $loadingbox-size*2);
 
   background: #444; // Fallback
   background: rgba(0, 0, 0, .5);
-  height: $box-size;
+  height: $loadingbox-size;
   left: 50%;
-  margin: -1.25em 0 0 -1.25em; // 20
+  margin: -20px 0 0 -20px;
   padding: 10px;
   position: fixed;
   top: 50%;
-  width: $box-size;
+  width: $loadingbox-size;
   z-index: 10003;
 
   div {
@@ -52,32 +52,32 @@ html {
 }
 
 @-webkit-keyframes imagelightbox-loading {
-  from { opacity: .5; -webkit-transform: scale(.75); }
-  50%  { opacity: 1;  -webkit-transform: scale(1 ); }
-  to   { opacity: .5; -webkit-transform: scale(.75); }
+  0% { opacity: .5; -webkit-transform: scale(.75); }
+  50% { opacity: 1;  -webkit-transform: scale(1); }
+  100% { opacity: .5; -webkit-transform: scale(.75); }
 }
 
 @-moz-keyframes imagelightbox-loading {
-  from { opacity: .5; -moz-transform: scale(.75); }
-  50%  { opacity: 1;  -moz-transform: scale(1 ); }
-  to   { opacity: .5; -moz-transform: scale(.75); }
+  0% { opacity: .5; -moz-transform: scale(.75); }
+  50% { opacity: 1;  -moz-transform: scale(1); }
+  100% { opacity: .5; -moz-transform: scale(.75); }
 }
 
 @-o-keyframes imagelightbox-loading {
-  from { opacity: .5; -o-transform: scale(.75); }
-  50%  { opacity: 1;  -o-transform: scale(1 ); }
-  to   { opacity: .5; -o-transform: scale(.75); }
+  0% { opacity: .5; -o-transform: scale(.75); }
+  50% { opacity: 1;  -o-transform: scale(1); }
+  100% { opacity: .5; -o-transform: scale(.75); }
 }
 
 @keyframes imagelightbox-loading {
-  from { opacity: .5; transform: scale(.75); }
-  50%  { opacity: 1;  transform: scale(1 ); }
-  to   { opacity: .5; transform: scale(.75); }
+  0% { opacity: .5; transform: scale(.75); }
+  50% { opacity: 1;  transform: scale(1); }
+  100% { opacity: .5; transform: scale(.75); }
 }
 
 #imagelightbox-overlay {
   background: #fff;
-  background: rgba(255, 255, 255, .9 );
+  background: rgba(255, 255, 255, .9);
   bottom: 0;
   left: 0;
   position: fixed;
@@ -89,24 +89,22 @@ html {
 
 // Close button
 #imagelightbox-close {
-  $size: 40px;
-  -moz-border-radius: 50%;
+  @include border-radius(50%);
+
+
+  background-color: #666;
+  height: $closebutton-size;
+  position: fixed;
+  right: $closebutton-size;
+  text-align: left;
+  text-indent: -9999px;
+  top: $closebutton-size;
   -moz-transition: color .3s ease;
   -ms-transition: color .3s ease;
   -o-transition: color .3s ease;
-  -webkit-border-radius: 50%;
   -webkit-transition: color .3s ease;
-
-  background-color: #666;
-  border-radius: 50%;
-  height: $size;
-  position: fixed;
-  right: $size;
-  text-align: left;
-  text-indent: -9999px;
-  top: $size;
   transition: color .3s ease;
-  width: $size;
+  width: $closebutton-size;
   z-index: 10002;
 
   &:hover {
@@ -126,11 +124,11 @@ html {
   }
 
   &:before {
-    @include rotate( 45deg );
+    @include rotate(45deg);
   }
 
   &:after {
-    @include rotate( -45deg );
+    @include rotate(-45deg);
   }
 }
 
@@ -149,7 +147,7 @@ html {
 // The nav bubbles
 #imagelightbox-nav {
   @include border-radius(20px);
-  @include translateX( -50% );
+  @include translateX(-50%);
 
   background-color: #444;
   background-color: rgba(0, 0, 0, .5);
@@ -166,10 +164,10 @@ html {
     height: 20px;
     margin: 0 5px;
     width: 20px;
-  }
 
-  a.active {
-    background-color: #fff;
+    .active {
+      background-color: #fff;
+    }
   }
 }
 
@@ -178,30 +176,30 @@ html {
 #imagelightbox-close,
 #imagelightbox-caption,
 #imagelightbox-nav {
-  -webkit-animation: fade-in .25s linear;
   -moz-animation: fade-in .25s linear;
   -o-animation: fade-in .25s linear;
+  -webkit-animation: fade-in .25s linear;
   animation: fade-in .25s linear;
 }
 
 @-webkit-keyframes fade-in {
-  from  { opacity: 0; }
-  to    { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @-moz-keyframes fade-in {
-  from  { opacity: 0; }
-  to    { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @-o-keyframes fade-in {
-  from  { opacity: 0; }
-  to    { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes fade-in {
-  from  { opacity: 0; }
-  to    { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @media only screen and (max-width: 660px) {
