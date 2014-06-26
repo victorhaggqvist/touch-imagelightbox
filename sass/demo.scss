@@ -1,49 +1,90 @@
-// Core variables and mixins
-@import 'bower_components/sass-bootstrap/lib/variables';
-@import 'bower_components/sass-bootstrap/lib/mixins';
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
-// Reset
-@import 'bower_components/sass-bootstrap/lib/normalize';
-// @import 'bower_components/sass-bootstrap/lib/print';
+#container {
+  margin: 3.125em auto 6.25em;
+  padding: 0 20px;
+  text-align: center;
+  width: 41.25em;
 
-// Core CSS
-@import 'bower_components/sass-bootstrap/lib/scaffolding';
-@import 'bower_components/sass-bootstrap/lib/type';
-@import 'bower_components/sass-bootstrap/lib/code';
-@import 'bower_components/sass-bootstrap/lib/grid';
-// @import 'bower_components/sass-bootstrap/lib/tables';
-// @import 'bower_components/sass-bootstrap/lib/forms';
-@import 'bower_components/sass-bootstrap/lib/buttons';
+  h1 {
+    font-size: 2.125em;
+    line-height: .882em;
+    text-transform: uppercase;
 
-// Components
-// @import 'bower_components/sass-bootstrap/lib/component-animations';
-// @import 'bower_components/sass-bootstrap/lib/glyphicons';
-// @import 'bower_components/sass-bootstrap/lib/dropdowns';
-// @import 'bower_components/sass-bootstrap/lib/button-groups';
-// @import 'bower_components/sass-bootstrap/lib/input-groups';
-// @import 'bower_components/sass-bootstrap/lib/navs';
-// @import 'bower_components/sass-bootstrap/lib/navbar';
-// @import 'bower_components/sass-bootstrap/lib/breadcrumbs';
-// @import 'bower_components/sass-bootstrap/lib/pagination';
-// @import 'bower_components/sass-bootstrap/lib/pager';
-// @import 'bower_components/sass-bootstrap/lib/labels';
-// @import 'bower_components/sass-bootstrap/lib/badges';
-// @import 'bower_components/sass-bootstrap/lib/jumbotron';
-@import 'bower_components/sass-bootstrap/lib/thumbnails';
-// @import 'bower_components/sass-bootstrap/lib/alerts';
-// @import 'bower_components/sass-bootstrap/lib/progress-bars';
-@import 'bower_components/sass-bootstrap/lib/media';
-// @import 'bower_components/sass-bootstrap/lib/list-group';
-@import 'bower_components/sass-bootstrap/lib/panels';
-// @import 'bower_components/sass-bootstrap/lib/wells';
-// @import 'bower_components/sass-bootstrap/lib/close';
+    span {
+      color: #aaa;
+      display: block;
+      font-size: .588em;
+      line-height: 1em;
+    }
 
-// Components w/ JavaScript
-// @import 'bower_components/sass-bootstrap/lib/modals';
-// @import 'bower_components/sass-bootstrap/lib/tooltip';
-// @import 'bower_components/sass-bootstrap/lib/popovers';
-// @import 'bower_components/sass-bootstrap/lib/carousel';
+    &:hover {
+      color: #666;
 
-// Utility classes
-@import 'bower_components/sass-bootstrap/lib/utilities';
-@import 'bower_components/sass-bootstrap/lib/responsive-utilities';
+      span {
+        color: #666;
+      }
+    }
+  }
+
+  h2 {
+    border-top: 1px solid #ddd;
+    margin-bottom: .625em;
+    margin-top: 1.875em;
+    padding-top: 1.875em;
+
+    span {
+      color: #666;
+    }
+  }
+
+  li {
+    display: inline-block;
+    margin: .625em;
+  }
+
+  img {
+    border: .625em solid rgba(255, 255, 255, .5);
+    // border-color: #eee;
+
+    -moz-box-shadow: 0 0 .313em rgba(0, 0, 0, .05);
+    -webkit-box-shadow: 0 0 .313em rgba(0, 0, 0, .05);
+    box-shadow: 0 0 .313em rgba(0, 0, 0, .05);
+    height: 8.75em;
+
+    -moz-transition: -moz-box-shadow .3s ease, border-color .3s ease;
+    -ms-transition: -ms-box-shadow .3s ease, border-color .3s ease;
+    -o-transition: -o-box-shadow .3s ease, border-color .3s ease;
+    -webkit-transition: -webkit-box-shadow .3s ease, border-color .3s ease;
+    transition: box-shadow .3s ease, border-color .3s ease;
+    width: 8.75em;
+
+    &:hover {
+      border-color: #fff;
+
+      -moz-box-shadow: 0 0 .938em rgba(0, 0, 0, .25);
+      -webkit-box-shadow: 0 0 .938em rgba(0, 0, 0, .25);
+      box-shadow: 0 0 .938em rgba(0, 0, 0, .25);
+    }
+  }
+
+  footer {
+    border-top: 1px solid #ddd;
+    color: #aaa;
+    font-size: .875em;
+    margin-top: 2.143em;
+    padding-top: 2.143em;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  #container {
+    width: 100%;
+  }
+}
+
+ul {
+  padding: 0;
+}
