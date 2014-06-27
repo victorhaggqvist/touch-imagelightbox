@@ -67,6 +67,16 @@ module.exports = function(grunt) {
         dest: './',
         filter: 'isFile'
       }
+    },
+    command : {
+      make_images_md: {
+        type: 'shell',
+        cmd: 'php images.php md'
+      },
+      make_index_html: {
+        type: 'shell',
+        cmd: 'php index.php > index.html'
+      }
     }
   });
 
@@ -74,8 +84,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-responsive-images');
+  grunt.loadNpmTasks('grunt-contrib-commands');
 
   // Default task.
-  grunt.registerTask('default', ['responsive_images', 'sass', 'copy']);
+  grunt.registerTask('default', ['responsive_images', 'sass', 'copy', 'command']);
 
 };
