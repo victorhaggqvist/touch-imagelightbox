@@ -34,6 +34,7 @@ $headings = array(
       <header>
         <h1>Image Lightbox<span>Responsive &amp; Touch-Friendly</span></h1>
         <iframe id="fork-button" src="http://ghbtns.com/github-btn.html?user=victorhaggqvist&repo=touch-imagelightbox&type=fork"  allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+        <p>View source of demos on <a href="https://github.com/victorhaggqvist/touch-imagelightbox/tree/gh-pages">Github</a>.</p>
       </header>
 
       <?php
@@ -52,7 +53,6 @@ $headings = array(
        ?>
 
       <footer>
-        <p>View source of demos on <a href="https://github.com/victorhaggqvist/touch-imagelightbox/tree/gh-pages">Github</a>.</p>
         <p>All photos are licensed <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>. For full credits please referer to <a href="./images.md">images.md</a></p>
       </footer>
     </div>
