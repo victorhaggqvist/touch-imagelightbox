@@ -69,13 +69,9 @@ module.exports = function(grunt) {
       }
     },
     command : {
-      make_images_md: {
+      build: {
         type: 'shell',
-        cmd: 'php images.php md'
-      },
-      make_index_html: {
-        type: 'shell',
-        cmd: 'php index.php > index.html'
+        cmd: './build.sh'
       }
     }
   });
