@@ -114,7 +114,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['clean', 'jshint', 'concat', 'uglify', 'sass']);
+  grunt.registerTask('default', ['clean', 'jshint:main', 'concat', 'uglify', 'sass']);
 
   grunt.registerTask('demo', ['default', 'copy']);
 
