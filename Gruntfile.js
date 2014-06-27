@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       lightbox_js: {
         expand: true,
         flatten: true,
-        src: ['bower_components/touch-imagelightbox/dist/touch-imagelightbox.js'],
+        src: ['bower_components/touch-imagelightbox/dist/touch-imagelightbox.min.js'],
         dest: './',
         filter: 'isFile'
       },
