@@ -1,6 +1,6 @@
 {
   "name": "touch-imagelightbox",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "authors": [
     "Victor Häggqvist <victor@snilius.com>"
   ],
@@ -9,7 +9,7 @@
   "keywords": [
     "lightbox",
     "touch",
-    "slideshow"
+    "image"
   ],
   "license": "MIT",
   "homepage": "https://victorhaggqvist.github.io/touch-imagelightbox",
