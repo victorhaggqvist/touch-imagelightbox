@@ -12,7 +12,7 @@ Or with git `git clone https://github.com/victorhaggqvist/touch-imagelightbox.gi
 Or download the [zip](https://github.com/victorhaggqvist/touch-imagelightbox/archive/master.zip).
 
 #Requirements
-jQuery (or maby Zepto.js, though unteststed)
+jQuery
 
 #How to build
 Image Lightbox is buildt using the Grunt toolchain. The CSS is build using SASS and Compass, which means you need Ruby, the SASS and Compass gems to make it. 
