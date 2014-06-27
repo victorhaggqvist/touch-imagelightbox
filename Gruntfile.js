@@ -44,6 +44,7 @@ module.exports = function(grunt) {
         unused: true,
         boss: true,
         eqnull: true,
+        "-W044" : true, // cant get inline comment to work with grunt
         globals: {
           jQuery: true
         }
