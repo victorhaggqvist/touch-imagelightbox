@@ -56,7 +56,7 @@ $headings = array(
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="./touch-imagelightbox.js"></script>
+    <script src="./touch-imagelightbox.min.js"></script>
     <script>
 
       $( function()
