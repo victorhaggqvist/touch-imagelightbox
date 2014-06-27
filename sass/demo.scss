@@ -3,13 +3,13 @@ body {
 }
 
 #container {
-  margin: 3.125em auto 6.25em;
+  margin: 50px auto 100px;
   padding: 0 20px;
   text-align: center;
-  width: 41.25em;
+  width: 700px;
 
   h1 {
-    font-size: 2.125em;
+    font-size: 37px;
     line-height: .882em;
     text-transform: uppercase;
 
@@ -76,12 +76,22 @@ body {
     font-size: .875em;
     margin-top: 2.143em;
     padding-top: 2.143em;
+
+    a {
+      color: #666;
+    }
   }
 }
 
 @media only screen and (max-width: 660px) {
   #container {
-    width: 100%;
+    width: 90%;
+
+    &:before,
+    &:after {
+      content: ' ';
+      display: table;
+    }
   }
 }
 

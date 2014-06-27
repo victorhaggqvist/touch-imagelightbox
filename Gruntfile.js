@@ -85,6 +85,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-contrib-commands');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
   grunt.registerTask('default', ['responsive_images', 'sass', 'copy', 'command']);

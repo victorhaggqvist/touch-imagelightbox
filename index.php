@@ -50,7 +50,7 @@ $headings = array(
        ?>
 
       <footer>
-        <p>Photos credit to Osvaldas Valutis, www.osvaldas.info</p>
+        <p>All photos are licensed <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>. For full credits please referer to <a href="./images.md">images.md</a></p>
       </footer>
     </div>
 
