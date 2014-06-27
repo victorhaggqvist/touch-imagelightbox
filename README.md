@@ -25,7 +25,7 @@ Credits again to http://osvaldas.info/image-lightbox-responsive-touch-friendly
 $( function(){
   $('a').imageLightbox(); // for a single image
   // OR
-  $('a[lightbox="foo"]').imageLightbox(); // for a multiple, something likte this
+  $('a[lightbox="foo"]').imageLightbox(); // for a multiple, something like this
 });
 </script>
 ```
