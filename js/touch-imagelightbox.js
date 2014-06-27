@@ -72,8 +72,8 @@
       inProgress = false,
 
       isTargetValid = function( element ) {
-        this.regexValidObject = /(\.(' + options.allowedTypes + ')$)/;
-        return $( element ).prop( 'tagName' ).toLowerCase() === 'a' && this.regexValidObject.test($(element).attr('href') );
+        options.regexValidObject = new RegExp("(\.("+options.allowedTypes+")$)");
+        return $( element ).prop( 'tagName' ).toLowerCase() === 'a' && options.regexValidObject.test($(element).attr('href') );
       },
 
       setImage = function() {
