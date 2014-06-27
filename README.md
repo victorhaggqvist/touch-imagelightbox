@@ -2,6 +2,8 @@ Touch Imagelightbox
 ==============
 Imagelightbox was originly created by [Osvaldas Valutis](http://osvaldas.info/image-lightbox-responsive-touch-friendly), though it was only accesible through his site. I put it here to make it more maintainable.
 
+View a demo here: https://victorhaggqvist.github.io/touch-imagelightbox/
+
 #How to get it
 Via bower.io `bower install touch-imagelightbox`
 
@@ -10,7 +12,9 @@ Or with git `git clone https://github.com/victorhaggqvist/touch-imagelightbox.gi
 Or download the [zip](https://github.com/victorhaggqvist/touch-imagelightbox/archive/master.zip).
 
 #Requirements
-jQuery (or maby Zepto.js, though unteststed)
+jQuery
+
+NOTE: The bower install will not get jQuery for you, if you want to get jQuery from bower too use `bower install jquery`
 
 #How to build
 Image Lightbox is buildt using the Grunt toolchain. The CSS is build using SASS and Compass, which means you need Ruby, the SASS and Compass gems to make it. 
