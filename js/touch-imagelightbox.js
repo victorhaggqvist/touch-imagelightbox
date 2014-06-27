@@ -72,7 +72,9 @@
       inProgress = false,
 
       isTargetValid = function( element ) {
+        /*jshint -W044*/
         options.regexValidObject = new RegExp("(\.("+options.allowedTypes+")$)");
+        /*jshint +W044*/
         return $( element ).prop( 'tagName' ).toLowerCase() === 'a' && options.regexValidObject.test($(element).attr('href') );
       },
 
