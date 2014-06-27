@@ -1,4 +1,4 @@
-/*! touch-imagelightbox - v0.1.0 - 2014-06-24
+/*! touch-imagelightbox - v0.1.0 - 2014-06-27
 * https://github.com/victorhaggqvist/touch-imagelightbox
 * Copyright (c) 2014 Osvaldas Valutis (www.osvaldas.info); Licensed MIT
 * Contributors Victor Häggqvist (victorhaggqvist.com) */
@@ -75,8 +75,8 @@
       inProgress = false,
 
       isTargetValid = function( element ) {
-        this.regexValidObject = /(\.(' + options.allowedTypes + ')$)/;
-        return $( element ).prop( 'tagName' ).toLowerCase() === 'a' && this.regexValidObject.test($(element).attr('href') );
+        options.regexValidObject = new RegExp("(\.("+options.allowedTypes+")$)");
+        return $( element ).prop( 'tagName' ).toLowerCase() === 'a' && options.regexValidObject.test($(element).attr('href') );
       },
 
       setImage = function() {
