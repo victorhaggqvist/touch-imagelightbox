@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     watch: {
       main: {
         options: {
-          reload: true;
+          reload: true
         },
         files: ['index.php', 'sass/demo.scss'],
         tasks: ['sass']
@@ -53,10 +53,17 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      lightbox: {
+      lightbox_js: {
         expand: true,
         flatten: true,
         src: ['bower_components/touch-imagelightbox/dist/touch-imagelightbox.js'],
+        dest: './',
+        filter: 'isFile'
+      },
+      lightbox_css: {
+        expand: true,
+        flatten: true,
+        src: ['bower_components/touch-imagelightbox/dist/touch-imagelightbox.min.css'],
         dest: './',
         filter: 'isFile'
       }
