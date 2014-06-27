@@ -14,6 +14,8 @@ Or download the [zip](https://github.com/victorhaggqvist/touch-imagelightbox/arc
 #Requirements
 jQuery
 
+NOTE: The bower install will not get jQuery for you, if you want to get jQuery from bower too use `bower install jquery`
+
 #How to build
 Image Lightbox is buildt using the Grunt toolchain. The CSS is build using SASS and Compass, which means you need Ruby, the SASS and Compass gems to make it. 
 
