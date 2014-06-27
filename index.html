@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>Image Lightbox Demo</title>
+
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="touch-imagelightbox.min.css">
+
+  </head>
+
+  <body>
+    <div id="container">
+      <header>
+        <h1>Image Lightbox<span>Responsive &amp; Touch-Friendly</span></h1>
+      </header>
+
+      <h2>With activity indication</h2><ul><li><a href="./images/web/14448239362_53203a94bf_o.jpg" data-imagelightbox="0"><img src="./images/thumb/14448239362_53203a94bf_o.jpg" alt="Sunrise"></a></li><li><a href="./images/web/6260329772_7ce10ac83c_o.jpg" data-imagelightbox="0"><img src="./images/thumb/6260329772_7ce10ac83c_o.jpg" alt="transalpina"></a></li><li><a href="./images/web/7073381043_e3e50744eb_o.jpg" data-imagelightbox="0"><img src="./images/thumb/7073381043_e3e50744eb_o.jpg" alt="Water, rocks, sun, sea and cloud!"></a></li></ul><h2>With overlay <span>&amp; activity indication</span></h2><ul><li><a href="./images/web/9440861328_1326d64dbd_o.jpg" data-imagelightbox="1"><img src="./images/thumb/9440861328_1326d64dbd_o.jpg" alt="Sunday nature"></a></li><li><a href="./images/web/4440609236_fbfbe396b5_o.jpg" data-imagelightbox="1"><img src="./images/thumb/4440609236_fbfbe396b5_o.jpg" alt="Light after Darkness"></a></li><li><a href="./images/web/14459672716_2fd51d6133_o.jpg" data-imagelightbox="1"><img src="./images/thumb/14459672716_2fd51d6133_o.jpg" alt="A Dragonfly!"></a></li></ul><h2>With "close" button <span>&amp; activity indication</span></h2><ul><li><a href="./images/web/14461842031_f854d30f15_o.jpg" data-imagelightbox="2"><img src="./images/thumb/14461842031_f854d30f15_o.jpg" alt="Marumi DHG Macro 200 + Tamron 17-50mm. 2.8"></a></li><li><a href="./images/web/6178731018_10e6fd6a9d_o.jpg" data-imagelightbox="2"><img src="./images/thumb/6178731018_10e6fd6a9d_o.jpg" alt="Times Square in the rain"></a></li><li><a href="./images/web/12173370053_39624f5dc6_o.jpg" data-imagelightbox="2"><img src="./images/thumb/12173370053_39624f5dc6_o.jpg" alt="Manchester City Centre - Northern Quarter Viewed from the 15th Floor"></a></li></ul><h2>With caption <span>&amp; activity indication</span></h2><ul><li><a href="./images/web/8677766442_7d184f890e_o.jpg" data-imagelightbox="3"><img src="./images/thumb/8677766442_7d184f890e_o.jpg" alt="City sunset"></a></li><li><a href="./images/web/8553010494_a36be7fcc8_o.jpg" data-imagelightbox="3"><img src="./images/thumb/8553010494_a36be7fcc8_o.jpg" alt="City Lights"></a></li><li><a href="./images/web/3155078790_b365637b61_o.jpg" data-imagelightbox="3"><img src="./images/thumb/3155078790_b365637b61_o.jpg" alt="Ready . . . Set ...................."></a></li></ul><h2>With navigation <span>&amp; activity indication</span></h2><ul><li><a href="./images/web/443441197_c38caf32ee_o.jpg" data-imagelightbox="4"><img src="./images/thumb/443441197_c38caf32ee_o.jpg" alt="Lights ou"></a></li><li><a href="./images/web/4436427104_9cd5f0daba_o.jpg" data-imagelightbox="4"><img src="./images/thumb/4436427104_9cd5f0daba_o.jpg" alt="Golden Gate Bridge"></a></li><li><a href="./images/web/9212256888_c44fdaa46f_o.jpg" data-imagelightbox="4"><img src="./images/thumb/9212256888_c44fdaa46f_o.jpg" alt="Red Spruce Peak"></a></li></ul><h2>Combination</h2><ul><li><a href="./images/web/8573651373_6650a080d1_o.jpg" data-imagelightbox="5"><img src="./images/thumb/8573651373_6650a080d1_o.jpg" alt="The Lou Ruvo Center for Brain Health, Las Vegas, Nevada"></a></li><li><a href="./images/web/1483066391_ba9ceea56a_o.jpg" data-imagelightbox="5"><img src="./images/thumb/1483066391_ba9ceea56a_o.jpg" alt="Nightfall over South End of Stockholm"></a></li><li><a href="./images/web/5578985145_640f215e42_o.jpg" data-imagelightbox="5"><img src="./images/thumb/5578985145_640f215e42_o.jpg" alt="Grand Canyon Morning #dailyshoot"></a></li></ul>
+      <footer>
+        <p>Photos credit to Osvaldas Valutis, www.osvaldas.info</p>
+      </footer>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./touch-imagelightbox.js"></script>
+    <script>
+
+      $( function()
+      {
+        var activityIndicatorOn = function()
+          {
+            $( '<div id="imagelightbox-loading"><div></div></div>' ).appendTo( 'body' );
+          },
+          activityIndicatorOff = function()
+          {
+            $( '#imagelightbox-loading' ).remove();
+          },
+
+          overlayOn = function()
+          {
+            $( '<div id="imagelightbox-overlay"></div>' ).appendTo( 'body' );
+          },
+          overlayOff = function()
+          {
+            $( '#imagelightbox-overlay' ).remove();
+          },
+
+          closeButtonOn = function( instance )
+          {
+            $( '<a href="#" id="imagelightbox-close">Close</a>' ).appendTo( 'body' ).on( 'click touchend', function(){ $( this ).remove(); instance.quitImageLightbox(); return false; });
+          },
+          closeButtonOff = function()
+          {
+            $( '#imagelightbox-close' ).remove();
+          },
+
+          captionOn = function()
+          {
+            var description = $( 'a[href="' + $( '#imagelightbox' ).attr( 'src' ) + '"] img' ).attr( 'alt' );
+            if( description.length > 0 )
+              $( '<div id="imagelightbox-caption">' + description + '</div>' ).appendTo( 'body' );
+          },
+          captionOff = function()
+          {
+            $( '#imagelightbox-caption' ).remove();
+          },
+
+          navigationOn = function( instance, selector )
+          {
+            var images = $( selector );
+            if( images.length )
+            {
+              var nav = $( '<div id="imagelightbox-nav"></div>' );
+              for( var i = 0; i < images.length; i++ )
+                nav.append( '<a href="#"></a>' );
+
+              nav.appendTo( 'body' );
+              nav.on( 'click touchend', function(){ return false; });
+
+              var navItems = nav.find( 'a' );
+              navItems.on( 'click touchend', function()
+              {
+                var $this = $( this );
+                if( images.eq( $this.index() ).attr( 'href' ) != $( '#imagelightbox' ).attr( 'src' ) )
+                  instance.switchImageLightbox( $this.index() );
+
+                navItems.removeClass( 'active' );
+                navItems.eq( $this.index() ).addClass( 'active' );
+
+                return false;
+              })
+              .on( 'touchend', function(){ return false; });
+            }
+          },
+          navigationUpdate = function( selector )
+          {
+            var items = $( '#imagelightbox-nav a' );
+            items.removeClass( 'active' );
+            items.eq( $( selector ).filter( '[href="' + $( '#imagelightbox' ).attr( 'src' ) + '"]' ).index( selector ) ).addClass( 'active' );
+          },
+          navigationOff = function()
+          {
+            $( '#imagelightbox-nav' ).remove();
+          };
+
+        //  WITH ACTIVITY INDICATION
+        $( 'a[data-imagelightbox="0"]' ).imageLightbox(
+        {
+          onLoadStart:  function() { activityIndicatorOn(); },
+          onLoadEnd:    function() { activityIndicatorOff(); },
+          onEnd:      function() { activityIndicatorOff(); }
+        });
+
+        //  WITH OVERLAY & ACTIVITY INDICATION
+        $( 'a[data-imagelightbox="1"]' ).imageLightbox(
+        {
+          onStart:   function() { overlayOn(); },
+          onEnd:     function() { overlayOff(); activityIndicatorOff(); },
+          onLoadStart: function() { activityIndicatorOn(); },
+          onLoadEnd:   function() { activityIndicatorOff(); }
+        });
+
+        //  WITH "CLOSE" BUTTON & ACTIVITY INDICATION
+        var instanceC = $( 'a[data-imagelightbox="2"]' ).imageLightbox(
+        {
+          quitOnDocClick: false,
+          onStart:    function() { closeButtonOn( instanceC ); },
+          onEnd:      function() { closeButtonOff(); activityIndicatorOff(); },
+          onLoadStart:  function() { activityIndicatorOn(); },
+          onLoadEnd:    function() { activityIndicatorOff(); }
+        });
+
+        //  WITH CAPTION & ACTIVITY INDICATION
+        $( 'a[data-imagelightbox="3"]' ).imageLightbox(
+        {
+          onLoadStart: function() { captionOff(); activityIndicatorOn(); },
+          onLoadEnd:   function() { captionOn(); activityIndicatorOff(); },
+          onEnd:     function() { captionOff(); activityIndicatorOff(); }
+        });
+
+        //  WITH DIRECTION REFERENCE
+        var selectorE = 'a[data-imagelightbox="4"]';
+        var instanceE = $( selectorE ).imageLightbox(
+        {
+          onStart:   function() { navigationOn( instanceE, selectorE ); },
+          onEnd:     function() { navigationOff(); activityIndicatorOff(); },
+          onLoadStart: function() { activityIndicatorOn(); },
+          onLoadEnd:   function() { navigationUpdate( selectorE ); activityIndicatorOff(); }
+        });
+
+        //  ALL COMBINED
+        var instanceF = $( 'a[data-imagelightbox="5"]' ).imageLightbox(
+        {
+          onStart:    function() { overlayOn(); closeButtonOn( instanceF ); },
+          onEnd:      function() { overlayOff(); captionOff(); closeButtonOff(); activityIndicatorOff(); },
+          onLoadStart:  function() { captionOff(); activityIndicatorOn(); },
+          onLoadEnd:    function() { captionOn(); activityIndicatorOff(); }
+        });
+
+      });
+    </script>
+  </body>
+</html>
