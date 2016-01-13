@@ -71,10 +71,7 @@ export class LightBox {
     isTargetValid(element) {
         let validTypes = new RegExp("(\.("+this.options.allowedTypes+")$)");
 
-        //console.log(element.tagName.toLowerCase());
         return element.tagName.toLowerCase() === 'a' && validTypes.test(element.href);
-
-        //return $( element ).prop( 'tagName' ).toLowerCase() === 'a' && options.regexValidObject.test($(element).attr('href') );
     }
 
     loadImage(direction = false) {
@@ -82,60 +79,52 @@ export class LightBox {
         L.l(this.inProgress);
         if (this.inProgress) return false;
         L.l('not progress');
-        // if image.length
-        //if ()
+
 
         this.inProgress = true;
         if (this.options.onLoadStart !== false) this.options.onLoadStart();
 
         setTimeout(() => {
-            L.l('loadImage in');
-            FetchImage(this.target.href).then(image => {
-                this.image = image;
-                image.id='imagelightbox';
-                console.log(image);
-
-            //let image = new Image();
-            //image.src = this.target.href;
-
-            L.l(image);
-            document.body.appendChild(image);
-            //image.appendTo('body');
-            L.d('setImage');
-            this.setImage();
-
-            var params = {opacity: 1};
-            image.style.opacity = 0;
-
-            let prefix = CSSUtil.cssTransitionSupport();
-                CSSUtil.setTransitionProperty(image.style, 'opacity .3s linear');
-            //image.style[prefix + 'transform'] = 'opacity 25s linear';
-            //image.style.transition = 'opacity .3s linear';
-            image.style.transform = 'translateX(0px)';
-
-            setTimeout(() => {
-                // without timeout it's to fast to make it fade and just jumps to 1 instant
-                image.style.opacity = 1;
-            }, 5);
-
-            if (this.options.preloadNext) {
-                console.log(this.options.preloadNext);
-                Array.prototype.forEach.call(this.targets, (t) => {
-                    if (t == this.target) {
-                        console.log(t);
-                        console.log('match');
-                    }
-                });
-                //
-                ////this.targets.
-                //let nextTarget = targets.eq(targets.index(target) + 1);
-                //if (!nextTarget.length) nextTarget = targets.eq(0);
-                //$('<img />').attr('src', nextTarget.attr('href')).load();
-            }
-
-
+            L.d('loadImage in');
+            let image = new Image();
             this.image = image;
-            });
+            image.onload = () => {
+                image.id='imagelightbox';
+                L.l('img loaded');
+                //L.l(image);
+                document.body.appendChild(image);
+                //L.d('setImage');
+                this.setImage();
+
+                image.style.opacity = 0;
+
+                CSSUtil.setTransitionProperty(image, 'opacity .3s linear');
+                image.style.transform = 'translateX(0px)';
+
+                setTimeout(() => {
+                    // without timeout it's to fast to make it fade and just jumps to 1 instant
+                    image.style.opacity = 1;
+                }, 5);
+
+                if (this.options.preloadNext) {
+                    console.log(this.options.preloadNext);
+                    let next = null;
+                    Array.prototype.forEach.call(this.targets, (t, index) => {
+                        if (t == this.target && index+1 !== this.targets.length) {
+                            next = this.targets[index+1];
+                        }
+                    });
+
+                    if (next !== null) {
+                        L.d('preloading next');
+                        let nextImg = new Image();
+                        nextImg.src = next.href;
+                    } else {
+                        L.d('no preloading');
+                    }
+                }
+            };
+            image.src = this.target.href;
         }, this.options.animationSpeed + 100)
     }
 
@@ -162,7 +151,7 @@ export class LightBox {
     //}
 
     setImage() {
-        L.l(this.image);
+        //L.l(this.image);
         if (!this.image) return false;
 
         let screenWidth = window.innerWidth * 0.8;

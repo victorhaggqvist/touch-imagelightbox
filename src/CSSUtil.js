@@ -9,24 +9,25 @@ export class CSSUtil {
      *
      * using key-value dont work
      *
-     * @param ele
+     * @param ele DOMElement
      * @param value
      */
     static setTransitionProperty(ele, value) {
-        if (ele.transition === '')  {
-            ele.transition = value;
+        let style = ele.style;
+        if (style.transition === '')  {
+            style.transition = value;
             return;
         }
-        if (ele.WebkitTransition === '') {
-            ele.WebkitTransition = value;
+        if (style.WebkitTransition === '') {
+            style.WebkitTransition = value;
             return;
         }
-        if (ele.MozTransition === '') {
-            ele.MozTransition = value;
+        if (style.MozTransition === '') {
+            style.MozTransition = value;
             return;
         }
-        if (ele.OTransition === '') {
-            ele.OTransition = value;
+        if (style.OTransition === '') {
+            style.OTransition = value;
         }
     }
 
