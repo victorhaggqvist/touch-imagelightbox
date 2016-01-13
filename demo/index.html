@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>Image Lightbox Demo</title>
+
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="touch-imagelightbox.min.css">
+    <style type="text/css">
+        .animate {
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+
+<body>
+<a href="https://github.com/victorhaggqvist/touch-imagelightbox"><img id="fork-ribbon"
+                                                                      style="position: absolute; top: 0; right: 0; border: 0;"
+                                                                      src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+                                                                      alt="Fork me on GitHub"
+                                                                      data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<div id="container">
+    <header>
+        <h1>Image Lightbox<span>Responsive &amp; Touch-Friendly</span></h1>
+        <iframe id="fork-button"
+                src="http://ghbtns.com/github-btn.html?user=victorhaggqvist&repo=touch-imagelightbox&type=fork"
+                allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+        <p>View source of demos on <a
+                href="https://github.com/victorhaggqvist/touch-imagelightbox/tree/gh-pages">Github</a>.</p>
+    </header>
+
+    <h2>With activity indication</h2>
+    <ul>
+        <li><a href="img/14448239362_53203a94bf_o.jpg" data-imagelightbox="0"><img
+                src="img/14448239362_53203a94bf_o.jpg" alt="Sunrise"></a></li>
+        <li><a href="img/6260329772_7ce10ac83c_o.jpg" data-imagelightbox="0"><img
+                src="img/6260329772_7ce10ac83c_o.jpg" alt="transalpina"></a></li>
+        <li><a href="img/7073381043_e3e50744eb_o.jpg" data-imagelightbox="0"><img
+                src="img/7073381043_e3e50744eb_o.jpg" alt="Water, rocks, sun, sea and cloud!"></a></li>
+    </ul>
+    <h2>With overlay <span>&amp; activity indication</span></h2>
+    <ul>
+        <li><a href="img/9440861328_1326d64dbd_o.jpg" data-imagelightbox="1"><img
+                src="img/9440861328_1326d64dbd_o.jpg" alt="Sunday nature"></a></li>
+        <li><a href="img/4440609236_fbfbe396b5_o.jpg" data-imagelightbox="1"><img
+                src="img/4440609236_fbfbe396b5_o.jpg" alt="Light after Darkness"></a></li>
+        <li><a href="img/14459672716_2fd51d6133_o.jpg" data-imagelightbox="1"><img
+                src="img/14459672716_2fd51d6133_o.jpg" alt="A Dragonfly!"></a></li>
+    </ul>
+    <h2>With "close" button <span>&amp; activity indication</span></h2>
+    <ul>
+        <li><a href="img/14461842031_f854d30f15_o.jpg" data-imagelightbox="2"><img
+                src="img/14461842031_f854d30f15_o.jpg" alt="Marumi DHG Macro 200 + Tamron 17-50mm. 2.8"></a>
+        </li>
+        <li><a href="img/6178731018_10e6fd6a9d_o.jpg" data-imagelightbox="2"><img
+                src="img/6178731018_10e6fd6a9d_o.jpg" alt="Times Square in the rain"></a></li>
+        <li><a href="img/12173370053_39624f5dc6_o.jpg" data-imagelightbox="2"><img
+                src="img/12173370053_39624f5dc6_o.jpg"
+                alt="Manchester City Centre - Northern Quarter Viewed from the 15th Floor"></a></li>
+    </ul>
+    <h2>With caption <span>&amp; activity indication</span></h2>
+    <ul>
+        <li><a href="img/8677766442_7d184f890e_o.jpg" data-imagelightbox="3"><img
+                src="img/8677766442_7d184f890e_o.jpg" alt="City sunset"></a></li>
+        <li><a href="img/8553010494_a36be7fcc8_o.jpg" data-imagelightbox="3"><img
+                src="img/8553010494_a36be7fcc8_o.jpg" alt="City Lights"></a></li>
+        <li><a href="img/3155078790_b365637b61_o.jpg" data-imagelightbox="3"><img
+                src="img/3155078790_b365637b61_o.jpg" alt="Ready . . . Set ...................."></a></li>
+    </ul>
+    <h2>With navigation <span>&amp; activity indication</span></h2>
+    <ul>
+        <li><a href="img/443441197_c38caf32ee_o.jpg" data-imagelightbox="4"><img
+                src="img/443441197_c38caf32ee_o.jpg" alt="Lights ou"></a></li>
+        <li><a href="img/4436427104_9cd5f0daba_o.jpg" data-imagelightbox="4"><img
+                src="img/4436427104_9cd5f0daba_o.jpg" alt="Golden Gate Bridge"></a></li>
+        <li><a href="img/9212256888_c44fdaa46f_o.jpg" data-imagelightbox="4"><img
+                src="img/9212256888_c44fdaa46f_o.jpg" alt="Red Spruce Peak"></a></li>
+    </ul>
+    <h2>Combination</h2>
+    <ul>
+        <li><a href="img/8573651373_6650a080d1_o.jpg" data-imagelightbox="5"><img
+                src="img/8573651373_6650a080d1_o.jpg"
+                alt="The Lou Ruvo Center for Brain Health, Las Vegas, Nevada"></a></li>
+        <li><a href="img/1483066391_ba9ceea56a_o.jpg" data-imagelightbox="5"><img
+                src="img/1483066391_ba9ceea56a_o.jpg" alt="Nightfall over South End of Stockholm"></a></li>
+        <li><a href="img/5578985145_640f215e42_o.jpg" data-imagelightbox="5"><img
+                src="img/5578985145_640f215e42_o.jpg" alt="Grand Canyon Morning #dailyshoot"></a></li>
+    </ul>
+    <footer>
+        <p>All photos are licensed <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>. For full
+            credits please referer to <a href="./images.md">images.md</a></p>
+    </footer>
+</div>
+
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<script src="./touch-imagelightbox.js"></script>
+<!--<script src="./demo.js"></script>-->
+<script>
+    new LightBox.LightBox('a[data-imagelightbox="0"]')
+</script>
+</body>
+</html>
