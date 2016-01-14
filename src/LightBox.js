@@ -216,10 +216,10 @@ export class LightBox {
                 }, this.options.animationSpeed);
 
                 if (this.options.preloadNext) {
-                    let index = Array.prototype.indexOf.call(this.targets, this.target)
+                    let index = Array.prototype.indexOf.call(this.targets, this.target);
                     let next = this.targets[index + 1];
 
-                    if (next !== null) {
+                    if (next !== null && next !== undefined) {
                         log.debug('preloading next');
                         let nextImg = new Image();
                         nextImg.src = next.href;
