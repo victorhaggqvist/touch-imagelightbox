@@ -36,6 +36,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-size": "^2.0.0",
     "gulp-uglify": "^1.5.1",
+    "loglevel": "^1.4.0",
     "webpack-stream": "^3.1.0"
   }
 }

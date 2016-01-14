@@ -3,18 +3,23 @@
  */
 
 import {CSSUtil} from './CSSUtil'
-import {Log as L} from './Log/Log'
 import {animate} from './animate'
-import {FetchImage} from './FetchImage'
+import {LightDirection} from './LightDirection'
+var log = require('loglevel');
 
+log.setDefaultLevel(log.levels.DEBUG);
 
 export class LightBox {
 
     constructor(targetSelector, options = {}) {
+        log.info('LightBox');
         this.targets = document.querySelectorAll(targetSelector);
+        log.debug(this.targets);
 
+        log.debug('HAS_TOUCH '+LightBox.HAS_TOUCH);
         const defaultOptions = {
             allowedTypes:   'png|jpg|jpeg|gif',
+            selectorId:     'imagelightbox',
             animationSpeed: 250,
             preloadNext:    true,
             enableKeyboard: true,
@@ -28,25 +33,101 @@ export class LightBox {
         };
 
         this.options = Object.assign(options, defaultOptions);
-        console.log(this.options);
+        log.info(this.options);
 
         this.target = null;
-        this.image = document.createElement('img');
+        this.image = null;
         this.imageWidth = 0;
         this.imageHeight = 0;
         this.swipeDiff = 0;
         this.inProgress = false;
 
+        this.swipeStart = 0;
+        this.swipeEnd = 0;
+        this.imagePosLeft = 0;
+
         this.bindEvents();
     }
 
     bindEvents() {
-        console.log(this.targets);
-
         Array.prototype.forEach.call(this.targets, ele => {
             ele.onclick = this.onImageClick.bind(this)
         });
         window.addEventListener('resize', this.windowResizeListener.bind(this));
+
+        if (this.options.quitOnDocClick) {
+            document.body.addEventListener(LightBox.HAS_TOUCH ? 'touchend' : 'click', this.documentClick.bind(this));
+        }
+
+        if (this.options.enableKeyboard) {
+            document.body.addEventListener('keyup', this.handleKeyboard.bind(this));
+        }
+
+        //document.querySelector('#'+this.options.selectorId).addEventListener('click', this.floatingImageClick.bind(this));
+    }
+
+    handleKeyboard(e) {
+        if (this.image === null) return true;
+
+        e.preventDefault();
+
+        if (e.keyCode === 27) this.quitLightbox();
+
+        if (e.keyCode === 37 || e.keyCode === 39) {
+            let gotoIndex = Array.prototype.indexOf.call(this.targets, this.target) - (e.keyCode === 37 ? 1 : -1);
+
+            if (gotoIndex > this.targets.length-1) {
+                this.target = this.targets[0];
+            } else if (gotoIndex < 0) {
+                this.target = this.targets[this.targets.length -1];
+            } else {
+                this.target = this.targets[gotoIndex];
+            }
+
+            this.loadImage(e.keyCode === 37 ? LightDirection.LEFT : LightDirection.RIGHT);
+        }
+    }
+
+    //floatingImageClickEvent(e) {
+    //    if (!isTargetValid(this))
+    //        return true;
+    //    e.preventDefault();
+    //
+    //    if (inProgress)
+    //        return false;
+    //    inProgress = false;
+    //
+    //    if (options.onStart !== false)
+    //        options.onStart();
+    //    target = $(this);
+    //    loadImage();
+    //}
+
+    documentClick() {
+        log.debug('document click');
+
+        if (this.image !== null && this.target.href === this.image.src) {
+            log.info('quitting');
+            this.quitLightbox();
+        }
+    }
+
+    quitLightbox() {
+        if (this.image === null) return false;
+
+        CSSUtil.setTransitionProperty(this.image, 'opacity '+this.options.animationSpeed/1000+'s linear');
+        setTimeout(() => {
+            // without timeout it's to fast to make it fade and just jumps to 1 instant
+            this.image.style.opacity = 0;
+        }, 5);
+
+
+        setTimeout(() => {
+            this.removeImage();
+            this.inProgress = false;
+            if (this.options.onEnd !== false)
+                this.options.onEnd();
+        }, this.options.animationSpeed);
     }
 
     onImageClick(event) {
@@ -75,83 +156,198 @@ export class LightBox {
     }
 
     loadImage(direction = false) {
-        L.l('loadImage');
-        L.l(this.inProgress);
+        log.info('loadImage');
         if (this.inProgress) return false;
-        L.l('not progress');
+        log.debug('not progress');
 
+        if (this.image !== null) {
+            if (direction !== false
+                && (this.targets.length < 2
+                    || (this.options.quitOnEnd === true
+                        && (
+                            (direction === LightDirection.RIGHT && Array.prototype.indexOf(this.targets, this.target) === 0)
+                            || (direction === LightDirection.LEFT && Array.prototype.indexOf(this.targets, this.target) === targets.length - 1)
+                            )
+                    )
+                )
+            ) {
+                //quitLightbox();
+                return false;
+            }
+
+            log.debug('unload');
+
+            CSSUtil.setTransitionProperty(this.image, 'transform '+this.options.animationSpeed/1000+'s linear');
+            let transitionArgs = (100 * direction) - this.swipeDiff + 'px';
+            //let transitionArgs = '0px';
+            this.image.style.transform = 'translateX('+transitionArgs+')';
+
+            setTimeout(() => {
+                // without timeout it's to fast to make it fade and just jumps to 1 instant
+                this.image.style.opacity = 0;
+            }, 5);
+
+            setTimeout(() => {
+                log.debug('remove from dom');
+                this.removeImage();
+            }, this.options.animationSpeed);
+
+            this.swipeDiff = 0;
+        }
 
         this.inProgress = true;
         if (this.options.onLoadStart !== false) this.options.onLoadStart();
 
         setTimeout(() => {
-            L.d('loadImage in');
+            log.debug('loadImage in');
             let image = new Image();
             this.image = image;
             image.onload = () => {
-                image.id='imagelightbox';
-                L.l('img loaded');
-                //L.l(image);
+                image.id = this.options.selectorId;
+                log.debug('img loaded');
                 document.body.appendChild(image);
-                //L.d('setImage');
                 this.setImage();
 
                 image.style.opacity = 0;
 
-                CSSUtil.setTransitionProperty(image, 'opacity .3s linear');
+                CSSUtil.setTransitionProperty(image, 'opacity '+this.options.animationSpeed/1000+'s linear');
+                //image.style.transform = 'translateX('+(!direction? 0:-100 * direction)+'px)';
                 image.style.transform = 'translateX(0px)';
 
                 setTimeout(() => {
                     // without timeout it's to fast to make it fade and just jumps to 1 instant
                     image.style.opacity = 1;
-                }, 5);
+                }, 500);
+
+                setTimeout(() => {
+                    // animate img to the center point
+                    //image.style.transform = 'translateX(0px)';
+                //}, this.op2tions.animationSpeed/10);
+                }, 0);
+
+                setTimeout(() => {
+                    this.inProgress = false;
+                }, this.options.animationSpeed);
 
                 if (this.options.preloadNext) {
-                    console.log(this.options.preloadNext);
-                    let next = null;
-                    Array.prototype.forEach.call(this.targets, (t, index) => {
-                        if (t == this.target && index+1 !== this.targets.length) {
-                            next = this.targets[index+1];
-                        }
-                    });
-
+                    let index = Array.prototype.indexOf.call(this.targets, this.target)
+                    let next = this.targets[index + 1];
+                    
                     if (next !== null) {
-                        L.d('preloading next');
+                        log.debug('preloading next');
                         let nextImg = new Image();
                         nextImg.src = next.href;
                     } else {
-                        L.d('no preloading');
+                        log.debug('no preloading');
                     }
                 }
             };
             image.src = this.target.href;
+
+            this.swipeStart = 0;
+            this.swipeEnd = 0;
+            this.imagePosLeft = 0;
+
+            if (LightBox.HAS_POINTERS) {
+                image.addEventListener('pointerup', this.imageClickEvent.bind(this));
+                image.addEventListener('MSPointerUp', this.imageClickEvent.bind(this));
+            } else {
+                image.addEventListener('click', this.imageClickEvent.bind(this));
+            }
+
+            ['touchstart', 'pointerdown', 'MSPointerDown'].forEach(name => {
+                image.addEventListener(name, this.imageTouchStart.bind(this));
+            });
+
+            ['touchmove', 'pointermove', 'MSPointerMove'].forEach(name => {
+                image.addEventListener(name, this.imageTouchMove.bind(this));
+            });
+
+            ['touchend', 'touchcancel', 'pointerup', 'MSPointerUp'].forEach(name => {
+                image.addEventListener(name, this.imageTouchEnd.bind(this));
+            });
+
         }, this.options.animationSpeed + 100)
     }
 
-    //static animate(elem,style,unit,from,to,time) {
-    //    if( !elem) return;
-    //    var start = new Date().getTime(),
-    //        timer = setInterval(function() {
-    //            var step = Math.min(1,(new Date().getTime()-start)/time);
-    //            elem.style[style] = (from+step*(to-from))+unit;
-    //            if( step == 1) clearInterval(timer);
-    //        },25);
-    //    elem.style[style] = from+unit;
-    //}
+    removeImage() {
+        document.body.removeChild(this.image);
+        this.image = null;
+    }
 
-    //animate(id, direction, value, end, speed) {
-    //    var div = document.getElementById(id);
-    //    interval = setInterval(function() {
-    //        if (+(div.style) === end) {
-    //            clearInterval(interval);
-    //            return false;
-    //        }
-    //        div.style[direction] += value; // or -= as per your needs
-    //    }, speed);
-    //}
+    imageClickEvent(e) {
+        e.preventDefault();
+        log.debug('click');
+
+        if (this.options.quitOnImgClick) {
+            L.i('implement this');
+            //quitLightbox();
+            return false;
+        }
+
+        if (this.wasTouched(e))
+            return true;
+
+        var posX = e.pageX - e.target.offsetLeft;
+        log.debug(posX);
+
+        let gotoIndex = Array.prototype.indexOf.call(this.targets, this.target) - (this.imageWidth / 2 > posX ? 1 : -1);
+
+        if (gotoIndex > this.targets.length-1) {
+            this.target = this.targets[0];
+        } else if (gotoIndex < 0) {
+            this.target = this.targets[this.targets.length -1];
+        } else {
+            this.target = this.targets[gotoIndex];
+        }
+
+        this.loadImage(this.imageWidth / 2 > posX ? LightDirection.LEFT : LightDirection.RIGHT);
+    }
+
+    imageTouchStart(e) {
+        if (!this.wasTouched(e) || this.options.quitOnImgClick)
+            return true;
+
+        this.swipeStart = e.pageX || e.touches[0].pageX;
+    }
+
+    imageTouchMove(e) {
+        if (!this.wasTouched(e) || this.options.quitOnImgClick)
+            return true;
+
+        e.preventDefault();
+        this.swipeEnd = e.pageX || e.touches[0].pageX;
+        this.swipeDiff = this.swipeStart - this.swipeEnd;
+
+        this.image.style.transform = 'translateX('+ (-this.swipeDiff) + 'px)';
+        //CSSUtil.setTransitionProperty(this.image, 'transform 0s linear');
+    }
+
+    imageTouchEnd(e) {
+        if (!this.wasTouched(e) || this.options.quitOnImgClick)
+            return true;
+
+        log.debug(this.swipeDiff);
+        if (Math.abs(this.swipeDiff) > 50) {
+            let gotoIndex = Array.prototype.indexOf.call(this.targets, this.target) - ( this.swipeDiff < 0 ? 1 : -1 );
+
+            if (gotoIndex > this.targets.length-1) {
+                this.target = this.targets[0];
+            } else if (gotoIndex < 0) {
+                this.target = this.targets[this.targets.length -1];
+            } else {
+                this.target = this.targets[gotoIndex];
+            }
+
+            let direction = this.swipeDiff > 0 ? LightDirection.RIGHT : LightDirection.LEFT;
+            this.loadImage(direction);
+        } else {
+            this.image.style.transform = 'translateX(0px)';
+            //CSSUtil.setTransitionProperty(this.image, 'transform '+ options.animationSpeed / 1000 +'s linear');
+        }
+    }
 
     setImage() {
-        //L.l(this.image);
         if (!this.image) return false;
 
         let screenWidth = window.innerWidth * 0.8;
@@ -176,7 +372,28 @@ export class LightBox {
         };
     }
 
+    wasTouched(event) {
+        if (LightBox.HAS_TOUCH) return true;
+
+        if (!LightBox.HAS_POINTERS || typeof event === 'undefined' || typeof event.pointerType === 'undefined')
+            return false;
+
+        if (typeof event.MSPOINTER_TYPE_MOUSE !== 'undefined') {
+            if (event.MSPOINTER_TYPE_MOUSE !== event.pointerType)
+                return true;
+        } else {
+            if (event.pointerType !== 'mouse')
+                return true;
+        }
+
+        return false;
+    };
+
     windowResizeListener() {
-        console.log('resized')
+        log.debug('resized');
+        this.setImage();
     }
 }
+
+LightBox.HAS_TOUCH = ('ontouchstart' in window);
+LightBox.HAS_POINTERS = window.navigator.pointerEnabled || window.navigator.msPointerEnabled;
