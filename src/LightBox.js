@@ -86,7 +86,7 @@ export class LightBox {
                 this.target = this.targets[gotoIndex];
             }
 
-            this.loadImage(e.keyCode === 37 ? LightDirection.LEFT : LightDirection.RIGHT);
+            this.loadImage();
         }
     }
 
@@ -169,7 +169,12 @@ export class LightBox {
             log.debug('unload');
 
             CSSUtil.setTransitionProperty(this.image, 'opacity '+this.options.animationSpeed/1000+'s linear');
-            let transitionArgs = (100 * direction) - this.swipeDiff + 'px';
+
+            let transitionArgs = '0px';
+            if (direction !== false) {
+                transitionArgs = (100 * direction) - this.swipeDiff + 'px';
+            }
+
             this.image.style.transform = 'translateX('+transitionArgs+')';
 
             setTimeout(() => {
@@ -287,7 +292,7 @@ export class LightBox {
             this.target = this.targets[gotoIndex];
         }
 
-        this.loadImage(this.imageWidth / 2 > posX ? LightDirection.LEFT : LightDirection.RIGHT);
+        this.loadImage();
     }
 
     imageTouchStart(e) {
