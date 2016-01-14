@@ -20,7 +20,7 @@ export class LightBox {
         const defaultOptions = {
             allowedTypes:   'png|jpg|jpeg|gif',
             selectorId:     'imagelightbox',
-            animationSpeed: 250,
+            animationSpeed: 350,
             preloadNext:    true,
             enableKeyboard: true,
             quitOnEnd:      false,
@@ -29,7 +29,7 @@ export class LightBox {
             onStart:        false,
             onEnd:          false,
             onLoadStart:    false,
-            onLoadEnd:      false
+            onLoadEnd:      false,
         };
 
         this.options = Object.assign(options, defaultOptions);
@@ -51,7 +51,7 @@ export class LightBox {
 
     bindEvents() {
         Array.prototype.forEach.call(this.targets, ele => {
-            ele.onclick = this.onImageClick.bind(this)
+            ele.addEventListener('click', this.onImageClick.bind(this));
         });
         window.addEventListener('resize', this.windowResizeListener.bind(this));
 
@@ -88,20 +88,6 @@ export class LightBox {
         }
     }
 
-    //floatingImageClickEvent(e) {
-    //    if (!isTargetValid(this))
-    //        return true;
-    //    e.preventDefault();
-    //
-    //    if (inProgress)
-    //        return false;
-    //    inProgress = false;
-    //
-    //    if (options.onStart !== false)
-    //        options.onStart();
-    //    target = $(this);
-    //    loadImage();
-    //}
 
     documentClick() {
         log.debug('document click');
@@ -113,6 +99,7 @@ export class LightBox {
     }
 
     quitLightbox() {
+        log.debug('quitLightbox');
         if (this.image === null) return false;
 
         CSSUtil.setTransitionProperty(this.image, 'opacity '+this.options.animationSpeed/1000+'s linear');
@@ -161,6 +148,7 @@ export class LightBox {
         log.debug('not progress');
 
         if (this.image !== null) {
+            log.debug('has current image');
             if (direction !== false
                 && (this.targets.length < 2
                     || (this.options.quitOnEnd === true
@@ -177,9 +165,8 @@ export class LightBox {
 
             log.debug('unload');
 
-            CSSUtil.setTransitionProperty(this.image, 'transform '+this.options.animationSpeed/1000+'s linear');
+            CSSUtil.setTransitionProperty(this.image, 'opacity '+this.options.animationSpeed/1000+'s linear');
             let transitionArgs = (100 * direction) - this.swipeDiff + 'px';
-            //let transitionArgs = '0px';
             this.image.style.transform = 'translateX('+transitionArgs+')';
 
             setTimeout(() => {
@@ -210,20 +197,15 @@ export class LightBox {
 
                 image.style.opacity = 0;
 
-                CSSUtil.setTransitionProperty(image, 'opacity '+this.options.animationSpeed/1000+'s linear');
-                //image.style.transform = 'translateX('+(!direction? 0:-100 * direction)+'px)';
+                let interpretedSpeed = this.options.animationSpeed/1000;
+                log.debug(interpretedSpeed);
+                CSSUtil.setTransitionProperty(image, 'opacity '+interpretedSpeed+'s ease');
                 image.style.transform = 'translateX(0px)';
 
                 setTimeout(() => {
                     // without timeout it's to fast to make it fade and just jumps to 1 instant
                     image.style.opacity = 1;
-                }, 500);
-
-                setTimeout(() => {
-                    // animate img to the center point
-                    //image.style.transform = 'translateX(0px)';
-                //}, this.op2tions.animationSpeed/10);
-                }, 0);
+                }, 10);
 
                 setTimeout(() => {
                     this.inProgress = false;
@@ -232,7 +214,7 @@ export class LightBox {
                 if (this.options.preloadNext) {
                     let index = Array.prototype.indexOf.call(this.targets, this.target)
                     let next = this.targets[index + 1];
-                    
+
                     if (next !== null) {
                         log.debug('preloading next');
                         let nextImg = new Image();
@@ -246,7 +228,7 @@ export class LightBox {
 
             this.swipeStart = 0;
             this.swipeEnd = 0;
-            this.imagePosLeft = 0;
+            //this.imagePosLeft = 0;
 
             if (LightBox.HAS_POINTERS) {
                 image.addEventListener('pointerup', this.imageClickEvent.bind(this));
