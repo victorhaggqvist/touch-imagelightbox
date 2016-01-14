@@ -1,0 +1,50 @@
+$loadingbox-size: 20px;
+
+#imagelightbox-loading,
+#imagelightbox-loading div {
+    border-radius: 50%;
+}
+
+#imagelightbox-loading {
+    box-shadow: rgba(0, 0, 0, .75) 0 0 $loadingbox-size*2;
+
+    background: #444; // Fallback
+    background: rgba(0, 0, 0, .5);
+    height: $loadingbox-size;
+    left: 50%;
+    margin: -20px 0 0 -20px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: $loadingbox-size;
+    z-index: 10003;
+    animation: fade-in .25s linear;
+
+    div {
+        animation: imagelightbox-loading .5s ease infinite;
+
+        background-color: #fff;
+        height: 20px;
+        width: 20px;
+    }
+}
+
+@keyframes imagelightbox-loading {
+    0% {
+        opacity: .5;
+        transform: scale(.75);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: .5;
+        transform: scale(.75);
+    }
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

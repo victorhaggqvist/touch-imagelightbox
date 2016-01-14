@@ -9,10 +9,24 @@ var size = require('gulp-size');
 var uglify = require('gulp-uglify');
 var webpack = require('webpack-stream');
 
+gulp.task('style', function () {
+    return gulp.src('./style/touch-imagelightbox.scss')
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(gulp.dest('./demo'));
+});
+
 var webpackOptions = {
+    entry: {
+        ActivityIndicator: './src/Plugins/ActivityIndicator.js',
+        Overlay: './src/Plugins/Overlay.js',
+        CloseButton: './src/Plugins/CloseButton.js',
+        Core: './src/LightBox.js'
+    },
     output: {
-        filename: 'touch-imagelightbox.js',
-        library: 'LightBox',
+        filename: "LightBox.[name].js",
+        library: ["LightBox", "[name]"],
         libraryTarget: "var"
     },
     module: {
@@ -28,10 +42,12 @@ var webpackOptions = {
 };
 
 gulp.task('pack', function() {
-    return gulp.src('./src/LightBox.js')
-        .pipe(webpack(webpackOptions))
-        //.pipe(gulp.dest('./dist'));
-        .pipe(gulp.dest('./demo'));
+    return gulp.src('').pipe(webpack(webpackOptions)).pipe(gulp.dest('./demo'));
+
+    //return gulp.src(['./src/LightBox.js', './src/Plugins/*.js'])
+    //    .pipe(webpack(webpackOptions))
+    //    //.pipe(gulp.dest('./dist'));
+    //    .pipe(gulp.dest('./demo'));
 });
 
 gulp.task('default', ['pack']);
@@ -41,8 +57,10 @@ gulp.task('watch', function () {
 
     webpackOptions.watch = true;
 
-    return gulp.src('./src/LightBox.js')
-        .pipe(webpack(webpackOptions))
-        //.pipe(gulp.dest('./dist'));
-        .pipe(gulp.dest('./demo'));
+    gulp.src('').pipe(webpack(webpackOptions)).pipe(gulp.dest('./demo'));
+
+    //return gulp.src(['./src/LightBox.js', './src/Plugins/*.js'])
+    //    .pipe(webpack(webpackOptions))
+    //    //.pipe(gulp.dest('./dist'));
+    //    .pipe(gulp.dest('./demo'));
 });

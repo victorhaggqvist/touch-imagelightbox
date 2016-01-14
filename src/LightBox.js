@@ -26,10 +26,6 @@ export class LightBox {
             quitOnEnd:      false,
             quitOnImgClick: false,
             quitOnDocClick: true,
-            onStart:        false,
-            onEnd:          false,
-            onLoadStart:    false,
-            onLoadEnd:      false,
         };
 
         this.options = Object.assign(options, defaultOptions);
@@ -45,6 +41,12 @@ export class LightBox {
         this.swipeStart = 0;
         this.swipeEnd = 0;
         this.imagePosLeft = 0;
+
+
+        this.onStartListeners = [];
+        this.onEndListeners = [];
+        this.onLoadStartListeners = [];
+        this.onLoadEndListeners = [];
 
         this.bindEvents();
     }
@@ -112,8 +114,9 @@ export class LightBox {
         setTimeout(() => {
             this.removeImage();
             this.inProgress = false;
-            if (this.options.onEnd !== false)
-                this.options.onEnd();
+
+            this.onEndListeners.forEach(l => l());
+
         }, this.options.animationSpeed);
     }
 
@@ -129,7 +132,7 @@ export class LightBox {
 
         this.inProgress = false;
 
-        if (this.options.onStart !== false ) this.options.onStart();
+        this.onStartListeners.forEach(l => l());
 
         this.target = element;
 
@@ -183,7 +186,7 @@ export class LightBox {
         }
 
         this.inProgress = true;
-        if (this.options.onLoadStart !== false) this.options.onLoadStart();
+        this.onLoadStartListeners.forEach(l => l());
 
         setTimeout(() => {
             log.debug('loadImage in');
@@ -209,6 +212,7 @@ export class LightBox {
 
                 setTimeout(() => {
                     this.inProgress = false;
+                    this.onLoadEndListeners.forEach(l => l());
                 }, this.options.animationSpeed);
 
                 if (this.options.preloadNext) {
@@ -374,6 +378,26 @@ export class LightBox {
     windowResizeListener() {
         log.debug('resized');
         this.setImage();
+    }
+
+    addOnStartListener(listener) {
+        this.onStartListeners.push(listener);
+    }
+
+    addOnEndListener(listener) {
+        this.onEndListeners.push(listener);
+    }
+
+    addOnLoadStartListener(listener) {
+        this.onLoadStartListeners.push(listener);
+    }
+
+    addOnLoadEndListener(listener) {
+        this.onLoadEndListeners.push(listener);
+    }
+
+    registerPlugin(plugin) {
+        plugin.register(this);
     }
 }
 

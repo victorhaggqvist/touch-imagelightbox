@@ -1,0 +1,54 @@
+$closebutton-size: 40px;
+
+#imagelightbox-close {
+    border-radius: 50%;
+
+    background-color: #666;
+    height: $closebutton-size;
+    position: fixed;
+    right: $closebutton-size;
+    text-align: left;
+    text-indent: -9999px;
+    top: $closebutton-size;
+    transition: color .3s ease;
+    width: $closebutton-size;
+    z-index: 10002;
+
+    &:hover {
+        background-color: #111;
+    }
+
+    &:before,
+    &:after {
+        background-color: #fff;
+        bottom: 20%;
+        content: '';
+        left: 50%;
+        margin-left: -1px;
+        position: absolute;
+        top: 20%;
+        width: 2px;
+    }
+
+    &:before {
+        rotate: 45deg;
+    }
+
+    &:after {
+        rotate: -45deg;
+    }
+
+    animation: fade-in .25s linear;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@media only screen and (max-width: 660px) {
+    #imagelightbox-close {
+        right: 20px;
+        top: 20px;
+    }
+}
