@@ -92,7 +92,7 @@ export class LightBox {
 
         if (this.image !== null && this.target.href === this.image.src) {
             log.info('quitting');
-            this.quitLightbox();
+            if (this.options.quitOnDocClick) this.quitLightbox();
         }
     }
 
@@ -158,12 +158,11 @@ export class LightBox {
                     )
                 )
             ) {
-                //quitLightbox();
+                this.quitLightbox();
                 return false;
             }
 
             log.debug('unload');
-
             CSSUtil.setTransitionProperty(this.image, 'opacity '+this.options.animationSpeed/1000+'s linear');
 
             let transitionArgs = '0px';
@@ -268,8 +267,7 @@ export class LightBox {
         log.debug('click');
 
         if (this.options.quitOnImgClick) {
-            L.i('implement this');
-            //quitLightbox();
+            this.quitLightbox();
             return false;
         }
 
