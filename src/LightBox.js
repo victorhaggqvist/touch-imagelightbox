@@ -262,7 +262,8 @@ export class LightBox {
     }
 
     removeImage() {
-        document.body.removeChild(this.image);
+        let image = document.querySelector('#'+this.options.selectorId);
+        document.body.removeChild(image);
         this.image = null;
     }
 
