@@ -1,9 +1,9 @@
 /**
- * Created by Victor Häggqvist on 1/12/16.
+ * @author Victor Häggqvist
+ * @since 2016-01-12
  */
 
 import {CSSUtil} from './CSSUtil'
-import {animate} from './animate'
 import {LightDirection} from './LightDirection'
 var log = require('loglevel');
 
@@ -40,8 +40,6 @@ export class LightBox {
 
         this.swipeStart = 0;
         this.swipeEnd = 0;
-        this.imagePosLeft = 0;
-
 
         this.onStartListeners = [];
         this.onEndListeners = [];
@@ -64,8 +62,6 @@ export class LightBox {
         if (this.options.enableKeyboard) {
             document.body.addEventListener('keyup', this.handleKeyboard.bind(this));
         }
-
-        //document.querySelector('#'+this.options.selectorId).addEventListener('click', this.floatingImageClick.bind(this));
     }
 
     handleKeyboard(e) {
