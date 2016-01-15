@@ -6,7 +6,8 @@
 
 export class CloseButton {
 
-    constructor() {
+    constructor(closeOnDocumentClick=false) {
+        this.closeOnDocumentClick = closeOnDocumentClick;
         this.element = document.createElement('a');
         this.element.id = 'imagelightbox-close';
         this.element.innerHTML = 'Close';
@@ -19,14 +20,12 @@ export class CloseButton {
     }
 
     showButton() {
+        this.lightbox.options.quitOnDocClick = this.closeOnDocumentClick;
         ['click', 'touchend'].forEach(name => {
             this.element.addEventListener(name, this.exitLightbox.bind(this));
         });
 
         document.body.appendChild(this.element);
-
-        //$('<a href="#" id="imagelightbox-close">Close</a>').appendTo('body')
-        //    .on('click touchend', function(){ $(this).remove(); instance.quitImageLightbox(); return false; });
     }
 
     hideButton() {
@@ -34,7 +33,7 @@ export class CloseButton {
     }
 
     exitLightbox() {
-        this.lightbox.quitImageLightbox();
+        this.lightbox.quitLightbox();
     }
 
 }
