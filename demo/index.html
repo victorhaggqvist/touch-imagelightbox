@@ -9,99 +9,214 @@
     <title>Image Lightbox Demo</title>
 
     <link rel="stylesheet" href="demo.css">
-    <link rel="stylesheet" href="touch-imagelightbox.min.css">
-    <style type="text/css">
-        .animate {
-            opacity: 1 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="touch-imagelightbox.css">
 </head>
 
 <body>
-<a href="https://github.com/victorhaggqvist/touch-imagelightbox"><img id="fork-ribbon"
-                                                                      style="position: absolute; top: 0; right: 0; border: 0;"
-                                                                      src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
-                                                                      alt="Fork me on GitHub"
-                                                                      data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<a href="https://github.com/victorhaggqvist/touch-imagelightbox" class="github-corner"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
 <div id="container">
     <header>
-        <h1>Image Lightbox<span>Responsive &amp; Touch-Friendly</span></h1>
-        <iframe id="fork-button"
-                src="http://ghbtns.com/github-btn.html?user=victorhaggqvist&repo=touch-imagelightbox&type=fork"
-                allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
-        <p>View source of demos on <a
-                href="https://github.com/victorhaggqvist/touch-imagelightbox/tree/gh-pages">Github</a>.</p>
+        <h1>Image Lightbox<span>Responsive & Touch-Friendly</span></h1>
+        <p>View source of demos on <a href="https://github.com/victorhaggqvist/touch-imagelightbox/tree/gh-pages">Github</a>.</p>
     </header>
 
-    <h2>With activity indication</h2>
-    <ul>
-        <li><a href="img/14448239362_53203a94bf_o.jpg" data-imagelightbox="0"><img
-                src="img/14448239362_53203a94bf_o.jpg" alt="Sunrise"></a></li>
-        <li><a href="img/6260329772_7ce10ac83c_o.jpg" data-imagelightbox="0"><img
-                src="img/6260329772_7ce10ac83c_o.jpg" alt="transalpina"></a></li>
-        <li><a href="img/7073381043_e3e50744eb_o.jpg" data-imagelightbox="0"><img
-                src="img/7073381043_e3e50744eb_o.jpg" alt="Water, rocks, sun, sea and cloud!"></a></li>
-    </ul>
-    <h2>With overlay <span>&amp; activity indication</span></h2>
-    <ul>
-        <li><a href="img/9440861328_1326d64dbd_o.jpg" data-imagelightbox="1"><img
-                src="img/9440861328_1326d64dbd_o.jpg" alt="Sunday nature"></a></li>
-        <li><a href="img/4440609236_fbfbe396b5_o.jpg" data-imagelightbox="1"><img
-                src="img/4440609236_fbfbe396b5_o.jpg" alt="Light after Darkness"></a></li>
-        <li><a href="img/14459672716_2fd51d6133_o.jpg" data-imagelightbox="1"><img
-                src="img/14459672716_2fd51d6133_o.jpg" alt="A Dragonfly!"></a></li>
-    </ul>
-    <h2>With "close" button <span>&amp; activity indication</span></h2>
-    <ul>
-        <li><a href="img/14461842031_f854d30f15_o.jpg" data-imagelightbox="2"><img
-                src="img/14461842031_f854d30f15_o.jpg" alt="Marumi DHG Macro 200 + Tamron 17-50mm. 2.8"></a>
-        </li>
-        <li><a href="img/6178731018_10e6fd6a9d_o.jpg" data-imagelightbox="2"><img
-                src="img/6178731018_10e6fd6a9d_o.jpg" alt="Times Square in the rain"></a></li>
-        <li><a href="img/12173370053_39624f5dc6_o.jpg" data-imagelightbox="2"><img
-                src="img/12173370053_39624f5dc6_o.jpg"
-                alt="Manchester City Centre - Northern Quarter Viewed from the 15th Floor"></a></li>
-    </ul>
-    <h2>With caption <span>&amp; activity indication</span></h2>
-    <ul>
-        <li><a href="img/8677766442_7d184f890e_o.jpg" data-imagelightbox="3"><img
-                src="img/8677766442_7d184f890e_o.jpg" alt="City sunset"></a></li>
-        <li><a href="img/8553010494_a36be7fcc8_o.jpg" data-imagelightbox="3"><img
-                src="img/8553010494_a36be7fcc8_o.jpg" alt="City Lights"></a></li>
-        <li><a href="img/3155078790_b365637b61_o.jpg" data-imagelightbox="3"><img
-                src="img/3155078790_b365637b61_o.jpg" alt="Ready . . . Set ...................."></a></li>
-    </ul>
-    <h2>With navigation <span>&amp; activity indication</span></h2>
-    <ul>
-        <li><a href="img/443441197_c38caf32ee_o.jpg" data-imagelightbox="4"><img
-                src="img/443441197_c38caf32ee_o.jpg" alt="Lights ou"></a></li>
-        <li><a href="img/4436427104_9cd5f0daba_o.jpg" data-imagelightbox="4"><img
-                src="img/4436427104_9cd5f0daba_o.jpg" alt="Golden Gate Bridge"></a></li>
-        <li><a href="img/9212256888_c44fdaa46f_o.jpg" data-imagelightbox="4"><img
-                src="img/9212256888_c44fdaa46f_o.jpg" alt="Red Spruce Peak"></a></li>
-    </ul>
-    <h2>Combination</h2>
-    <ul>
-        <li><a href="img/8573651373_6650a080d1_o.jpg" data-imagelightbox="5"><img
-                src="img/8573651373_6650a080d1_o.jpg"
-                alt="The Lou Ruvo Center for Brain Health, Las Vegas, Nevada"></a></li>
-        <li><a href="img/1483066391_ba9ceea56a_o.jpg" data-imagelightbox="5"><img
-                src="img/1483066391_ba9ceea56a_o.jpg" alt="Nightfall over South End of Stockholm"></a></li>
-        <li><a href="img/5578985145_640f215e42_o.jpg" data-imagelightbox="5"><img
-                src="img/5578985145_640f215e42_o.jpg" alt="Grand Canyon Morning #dailyshoot"></a></li>
-    </ul>
+    
+        
+        <h2>Core</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452963510533-a6368b834bf8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=02a0de155409ee591fea7040c8acedb3"  data-imagelightbox="0">
+                    <img src="https://images.unsplash.com/photo-1452963510533-a6368b834bf8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=8d7880cd80b6a9f1169d0680c7a3c20d" alt="Photo by Lucia Velez de Paz">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452963409233-e624c6cd4c11?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=eaa1bfb15011d3ee8243c40ffb6a873d"  data-imagelightbox="0">
+                    <img src="https://images.unsplash.com/photo-1452963409233-e624c6cd4c11?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=a39955db5ea08eac8891df7a33be5f39" alt="Photo by Kate Zaidova">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452962654861-dc5c7e89a3aa?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=2f8a1740919fed67fa3e92a5924a3dea"  data-imagelightbox="0">
+                    <img src="https://images.unsplash.com/photo-1452962654861-dc5c7e89a3aa?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=38dd54d73602c09921e2a4dffdfc48d8" alt="Photo by Vladimir Kudinov">
+                </a>
+            </li>
+        </ul>
+    
+        
+        <h2>With activity indication</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452960962994-acf4fd70b632?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=e2bf2701a295324cd0c50b924fe208a6"  data-imagelightbox="1">
+                    <img src="https://images.unsplash.com/photo-1452960962994-acf4fd70b632?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=aa2a0c19b8dd309357b4b27d03037825" alt="Photo by davide ragusa">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452957731583-658917836266?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=bf0789c8876a9ad3342cba4c38ac6963"  data-imagelightbox="1">
+                    <img src="https://images.unsplash.com/photo-1452957731583-658917836266?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=0bc4f8220d93fde1e8799b8832d1102a" alt="Photo by Camilla Bundgaard">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452957689853-fd2b4f3d3aa2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=2ffc1e7221beba3ba73e48a15e78ef7f"  data-imagelightbox="1">
+                    <img src="https://images.unsplash.com/photo-1452957689853-fd2b4f3d3aa2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=3407b7de6a14bc903d596940985acb26" alt="Photo by Camilla Bundgaard">
+                </a>
+            </li>
+        </ul>
+    
+        
+        <h2>With overlay & activity indication</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452955767226-455c94ad1bf2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=987ec039e5bde5c23a29f83534c5a624"  data-imagelightbox="2">
+                    <img src="https://images.unsplash.com/photo-1452955767226-455c94ad1bf2?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=fdd2f37c0bf66df35763fd971b0e8c2d" alt="Photo by Georgi Petrov">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452953523127-a0949218fc33?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=0024f2c2152c99931b896f97a4895e58"  data-imagelightbox="2">
+                    <img src="https://images.unsplash.com/photo-1452953523127-a0949218fc33?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=3aec9b2ff90657182333a50800c5111b" alt="Photo by Harshal Hirve">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452953008873-ae5837174535?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=164f5bdd08fb25efe4e91973e8f392df"  data-imagelightbox="2">
+                    <img src="https://images.unsplash.com/photo-1452953008873-ae5837174535?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=11ecbf2ad3e60ff796998f2ffcfe4942" alt="Photo by Alex Wing">
+                </a>
+            </li>
+        </ul>
+    
+        
+        <h2>With "close" button & activity indication</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452952797148-d161124db4c8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=1e4db22040a9df9756ed8eae82ec9213"  data-imagelightbox="3">
+                    <img src="https://images.unsplash.com/photo-1452952797148-d161124db4c8?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=4914671db2468a15d6eabbae5da14316" alt="Photo by Andreas Kahlhöfer">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452948491233-ad8a1ed01085?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=e9d56706132524d1c080ba95b50f66ed"  data-imagelightbox="3">
+                    <img src="https://images.unsplash.com/photo-1452948491233-ad8a1ed01085?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=d7d2fdeeb16f4504d87e971e6a206b08" alt="Photo by Sven Scheuermeier">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452947637175-7dc3f84f3350?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=b6986ce7c9660bb45280b0c4205fc7f1"  data-imagelightbox="3">
+                    <img src="https://images.unsplash.com/photo-1452947637175-7dc3f84f3350?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=32bfef29b8549e2d30492fd1aaa5be51" alt="Photo by Sven Scheuermeier">
+                </a>
+            </li>
+        </ul>
+    
+        
+        <h2>With caption & activity indication</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452942000102-9c4c7aaeac81?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=8c0269da7206a0dcc83a840a3fc7c57a"  data-imagelightbox="4">
+                    <img src="https://images.unsplash.com/photo-1452942000102-9c4c7aaeac81?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=b9bc7dec4ff29dbfde154d74148eb94c" alt="Photo by Miriam Miles">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452933006409-19b87dc327b7?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=703b8f947dc61bebde4e1fdb5e008eeb"  data-imagelightbox="4">
+                    <img src="https://images.unsplash.com/photo-1452933006409-19b87dc327b7?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=74354b0faacb8cf70d2655b9fadf5846" alt="Photo by Timon Studler">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452924872281-04696e001ea3?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=17fbca60da821287959eacae0ab6144b"  data-imagelightbox="4">
+                    <img src="https://images.unsplash.com/photo-1452924872281-04696e001ea3?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=5905984278271e96ec6e2d0ac7710109" alt="Photo by Justin Cron">
+                </a>
+            </li>
+        </ul>
+    
+        
+        <h2>With navigation & activity indication</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452924447697-482a22f55f42?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=262ee0b03a7c11fca9765f804fd71f82"  data-imagelightbox="5">
+                    <img src="https://images.unsplash.com/photo-1452924447697-482a22f55f42?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=c87406375635ef275c0d437a279296b4" alt="Photo by Madeline Gibbs">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452915858640-325b467fe554?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=0044ed81a2d247724c452ba939980a6d"  data-imagelightbox="5">
+                    <img src="https://images.unsplash.com/photo-1452915858640-325b467fe554?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=02ed27e7bb8e15fb1df067ee7beb89dc" alt="Photo by Nathan Shively">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452915285804-941a8c0cd8af?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=251ef836ada7088607cb82c4f51a674d"  data-imagelightbox="5">
+                    <img src="https://images.unsplash.com/photo-1452915285804-941a8c0cd8af?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=7886267096c4f963c7e58efdb50fe9fc" alt="Photo by Callum Gale">
+                </a>
+            </li>
+        </ul>
+    
+        
+        <h2>Combination</h2>
+        <ul>
+            <li>
+                <a href="https://images.unsplash.com/photo-1452914793772-af331bf6e4b6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=c2e9ecd41653d863b79cecb82afccacf"  data-imagelightbox="6">
+                    <img src="https://images.unsplash.com/photo-1452914793772-af331bf6e4b6?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=54a8d7b094f32816d42dd6ab9b410be4" alt="Photo by Sang Huynh">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452909809578-94f609b1facc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=df0633cfc264005f30d4b54a7b4a463e"  data-imagelightbox="6">
+                    <img src="https://images.unsplash.com/photo-1452909809578-94f609b1facc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=bef3ff82adca61b4477f84ea16f4c61d" alt="Photo by Vladimir Kudinov">
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://images.unsplash.com/photo-1452902793598-4a506dd9a38e?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=a4e8de5703122be9dfc2e9a1eba64f1e"  data-imagelightbox="6">
+                    <img src="https://images.unsplash.com/photo-1452902793598-4a506dd9a38e?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=200&fit=max&s=a813370d501160abb1c9b63ba953baa8" alt="Photo by David Boozer">
+                </a>
+            </li>
+        </ul>
+    
+
     <footer>
-        <p>All photos are licensed <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>. For full
-            credits please referer to <a href="./images.md">images.md</a></p>
+        <p>All photos are licensed under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> and are delivered by <a href="https://unsplash.com">https://unsplash.com</a>.</p>
+        <p>Created by Victor Häggqvist</p>
     </footer>
 </div>
 
-
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
-<script src="./touch-imagelightbox.js"></script>
-<!--<script src="./demo.js"></script>-->
+<script src="./LightBox.Core.js"></script>
+<script src="./LightBox.ActivityIndicator.js"></script>
+<script src="./LightBox.Overlay.js"></script>
+<script src="./LightBox.CloseButton.js"></script>
+<script src="./LightBox.Captions.js"></script>
+<script src="./LightBox.Navigation.js"></script>
 <script>
-    new LightBox.LightBox('a[data-imagelightbox="0"]')
+    var box0 = new LightBox.Core('a[data-imagelightbox="0"]');
+
+    var box1 = new LightBox.Core('a[data-imagelightbox="1"]');
+    box1.registerPlugin(new LightBox.ActivityIndicator());
+
+    var box2 = new LightBox.Core('a[data-imagelightbox="2"]');
+    box2.registerPlugin(new LightBox.ActivityIndicator());
+    box2.registerPlugin(new LightBox.Overlay());
+
+    var box3 = new LightBox.Core('a[data-imagelightbox="3"]');
+    box3.registerPlugin(new LightBox.ActivityIndicator());
+    box3.registerPlugin(new LightBox.CloseButton());
+
+    var box4 = new LightBox.Core('a[data-imagelightbox="4"]');
+    box4.registerPlugin(new LightBox.ActivityIndicator());
+    box4.registerPlugin(new LightBox.Captions());
+
+    var box5 = new LightBox.Core('a[data-imagelightbox="5"]');
+    box5.registerPlugin(new LightBox.ActivityIndicator());
+    box5.registerPlugin(new LightBox.Navigation());
+
+    var box6 = new LightBox.Core('a[data-imagelightbox="6"]');
+    box6.registerPlugin(new LightBox.ActivityIndicator());
+    box6.registerPlugin(new LightBox.Navigation());
+    box6.registerPlugin(new LightBox.Captions());
+    box6.registerPlugin(new LightBox.CloseButton());
+    box6.registerPlugin(new LightBox.Overlay());
 </script>
 </body>
 </html>

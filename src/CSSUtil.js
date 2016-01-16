@@ -45,11 +45,9 @@ export class CSSUtil {
     }
 
     static cssTransitionTranslateX(element, positionX, speed) {
-        let options = {};
         let prefix = CSSUtil.cssTransitionSupport();
         element.style[prefix + 'transform'] = 'translateX(' + positionX + ')';
         element.style[prefix + 'transition'] = prefix + 'transform ' + speed + 's linear';
-        //element.style = Object.assign(options, element.style);
     }
 
 }
