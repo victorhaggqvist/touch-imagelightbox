@@ -19,6 +19,7 @@ export default class LightBox {
         log.debug('HAS_TOUCH '+LightBox.HAS_TOUCH);
         const defaultOptions = {
             allowedTypes:   'png|jpg|jpeg|gif',
+            restrictTypes:  false,
             selectorId:     'imagelightbox',
             animationSpeed: 350,
             preloadNext:    true,
@@ -135,6 +136,8 @@ export default class LightBox {
     }
 
     isTargetValid(element) {
+        if (this.options.restrictTypes === false) return true;
+
         let validTypes = new RegExp("(\.("+this.options.allowedTypes+")$)");
 
         return element.tagName.toLowerCase() === 'a' && validTypes.test(element.href);
