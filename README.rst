@@ -35,6 +35,16 @@ For versions <= 0.1.5 jQuery is required.
 
 NOTE: The bower install will not get jQuery for you, if you want to get jQuery from bower too use :code:`bower install jquery`
 
+Compatibility
+-------------
+Version 0.2.0 and continuing aims to support modern browsers. If you need more then 0.2.0 can provide go for 0.1.5.
+
+0.2.0 have (so far) been tested in
+
+- Firefix 43.0.4
+- Chrome 47 (including Android)
+- iOS 9.2
+
 Usage
 -----
 To only utilize the LightBox Core, with no plugins. At this point both Core and Plugins CSS is bundled.
