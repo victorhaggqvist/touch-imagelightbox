@@ -119,7 +119,13 @@ export default class LightBox {
 
     onImageClick(event) {
         log.debug(event);
-        let element = event.srcElement.parentElement;
+        let srcElement = event.srcElement;
+
+        if (srcElement === undefined) {
+            srcElement = event.originalTarget;
+        }
+
+        let element = srcElement.parentElement;
         if (!this.isTargetValid(element)) return true;
 
         event.preventDefault();
