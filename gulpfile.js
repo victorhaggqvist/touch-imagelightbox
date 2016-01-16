@@ -22,11 +22,13 @@ var webpackOptions = {
         ActivityIndicator: './src/Plugins/ActivityIndicator.js',
         Overlay: './src/Plugins/Overlay.js',
         CloseButton: './src/Plugins/CloseButton.js',
+        Captions: './src/Plugins/Captions.js',
+        Navigation: './src/Plugins/Navigation.js',
         Core: './src/LightBox.js'
     },
     output: {
-        filename: "LightBox.[name].js",
-        library: ["LightBox", "[name]"],
+        filename: 'LightBox.[name].js',
+        library: ['LightBox','[name]'],
         libraryTarget: "var"
     },
     module: {
@@ -34,7 +36,8 @@ var webpackOptions = {
             {
                 loader: 'babel',
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015'],
+                    plugins: ['add-module-exports']
                 }
             }
         ]
@@ -42,25 +45,16 @@ var webpackOptions = {
 };
 
 gulp.task('pack', function() {
-    return gulp.src('').pipe(webpack(webpackOptions)).pipe(gulp.dest('./demo'));
-
-    //return gulp.src(['./src/LightBox.js', './src/Plugins/*.js'])
-    //    .pipe(webpack(webpackOptions))
-    //    //.pipe(gulp.dest('./dist'));
-    //    .pipe(gulp.dest('./demo'));
+    return gulp.src('')
+        .pipe(webpack(webpackOptions))
+        .pipe(gulp.dest('./demo'));
 });
 
 gulp.task('default', ['pack']);
 
 gulp.task('watch', function () {
-    //gulp.watch('./src/LightBox.js', ['pack'])
-
     webpackOptions.watch = true;
-
-    gulp.src('').pipe(webpack(webpackOptions)).pipe(gulp.dest('./demo'));
-
-    //return gulp.src(['./src/LightBox.js', './src/Plugins/*.js'])
-    //    .pipe(webpack(webpackOptions))
-    //    //.pipe(gulp.dest('./dist'));
-    //    .pipe(gulp.dest('./demo'));
+    gulp.src('')
+        .pipe(webpack(webpackOptions))
+        .pipe(gulp.dest('./demo'));
 });
