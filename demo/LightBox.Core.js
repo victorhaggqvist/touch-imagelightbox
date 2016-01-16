@@ -188,7 +188,13 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 	        key: 'onImageClick',
 	        value: function onImageClick(event) {
 	            log.debug(event);
-	            var element = event.srcElement.parentElement;
+	            var srcElement = event.srcElement;
+
+	            if (srcElement === undefined) {
+	                srcElement = event.originalTarget;
+	            }
+
+	            var element = srcElement.parentElement;
 	            if (!this.isTargetValid(element)) return true;
 
 	            event.preventDefault();
