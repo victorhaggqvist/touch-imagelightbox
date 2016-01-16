@@ -4,6 +4,8 @@ A lightbox without bells and whistles.
 
 View a demo here: https://victorhaggqvist.github.io/touch-imagelightbox/
 
+View full docs: https://touch-imagelightbox.readthedocs.org
+
 Version 0.2.0
 -------------
 The original Imagelightbox and up to version 0.1.5 of `touch-imagelightbox` was a jQuery plugin.
