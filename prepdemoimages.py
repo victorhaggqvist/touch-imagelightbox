@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+import os
 import requests
 from collections import namedtuple
 from jinja2 import FileSystemLoader, Environment
+import json
 
 template_env = Environment(loader=FileSystemLoader('.'))
 template = template_env.get_template('demotemplate.html.jinja')
@@ -37,9 +39,18 @@ def put_image(img):
 headers = {
     'Authorization': 'Client-ID 3004ee20c6b4822a4ab148506fef3be12eab826823b6d15a84dcdb4dec086f7c'
 }
-r = requests.get('https://api.unsplash.com/photos?per_page='+str(maxnum), headers=headers)
 
-images = r.json()
+cache_file = '.imgcache.json'
+if os.path.isfile(cache_file):
+    with open(cache_file, 'r') as f:
+        images = json.load(f)
+else:
+    r = requests.get('https://api.unsplash.com/photos?per_page='+str(maxnum), headers=headers)
+    images = r.json()
+
+    with open(cache_file, 'w') as f:
+        json.dump(images, f)
+
 for img in images:
     put_image(img)
 
