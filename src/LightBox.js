@@ -26,7 +26,7 @@ export default class LightBox {
             enableKeyboard: true,
             quitOnEnd:      false,
             quitOnImgClick: false,
-            quitOnDocClick: true,
+            quitOnDocClick: true
         };
 
         this.options = Object.assign(options, defaultOptions);
@@ -99,7 +99,7 @@ export default class LightBox {
 
     quitLightbox() {
         log.debug('quitLightbox');
-        if (this.image === null) return false;
+        if (this.image === null) return;
 
         CSSUtil.setTransitionProperty(this.image, 'opacity '+this.options.animationSpeed/1000+'s linear');
         setTimeout(() => {
