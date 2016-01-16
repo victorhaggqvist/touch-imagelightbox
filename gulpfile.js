@@ -84,7 +84,7 @@ var bannerPlugins = ['/**',
   ''].join('\n');
 
 gulp.task('buildjs', ['uglify'], function() {
-    return gulp.src(['./dist/LightBox.*.js', '!./dist/LightBox.Core.js', '!./dist/LightBox.Plugins.js'])
+    return gulp.src(['./dist/LightBox.*.js', '!./dist/LightBox.Core.min.js', '!./dist/LightBox.Plugins.js'])
         .pipe(concat('LightBox.Plugins.js'))
         .pipe(rename({suffix: ".min"}))
         .pipe(header(bannerPlugins, { pkg : pkg }))
