@@ -2,10 +2,10 @@
   "name": "touch-imagelightbox",
   "version": "0.2.0",
   "authors": [
-    "Victor Häggqvist <victor@snilius.com>"
+    "Victor Häggqvist <victor@snilius.com> (https://victorhaggqvist.com/)"
   ],
-  "description": "A touch-friendly image lightbox",
-  "main": "dist/touch-imagelightbox.min.js",
+  "description": "A touch-friendly image lightbox, without bells and whistles.",
+  "main": "dist/LightBox.Core.min.js",
   "keywords": [
     "lightbox",
     "touch",

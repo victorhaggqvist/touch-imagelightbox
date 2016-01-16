@@ -9,6 +9,8 @@ var size = require('gulp-size');
 var uglify = require('gulp-uglify');
 var webpack = require('webpack-stream');
 var concat = require('gulp-concat');
+var header = require('gulp-header');
+var rename = require("gulp-rename");
 
 gulp.task('style', function () {
     return gulp.src('./style/touch-imagelightbox.scss')
@@ -65,25 +67,53 @@ gulp.task('lint', function() {
         .pipe(eslint.failAfterError());
 });
 
-
 gulp.task('uglify', ['pack'], function() {
     return gulp.src('./demo/LightBox.*.js')
         .pipe(uglify())
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest('dist'));
 });
+
+var bannerPlugins = ['/**',
+  ' * Image LightBox Plugins - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' * @author <%= pkg.authors%>',
+  ' */',
+  ''].join('\n');
 
 gulp.task('buildjs', ['uglify'], function() {
     return gulp.src(['./dist/LightBox.*.js', '!./dist/LightBox.Core.js', '!./dist/LightBox.Plugins.js'])
         .pipe(concat('LightBox.Plugins.js'))
+        .pipe(rename({suffix: ".min"}))
+        .pipe(header(bannerPlugins, { pkg : pkg }))
+        .pipe(gulp.dest('./dist'));
+});
+
+var banner = ['/**',
+  ' * Image LightBox - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' * @author <%= pkg.authors%>',
+  ' */',
+  ''].join('\n');
+
+var pkg = require('./bower.json');
+gulp.task('makecore', ['buildjs'], function() {
+    gulp.src(['./dist/LightBox.Core.min.js'])
+        .pipe(header(banner, { pkg : pkg }))
         .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('csso', ['style'], function() {
     return gulp.src('./demo/touch-imagelightbox.css')
         .pipe(csso())
+        .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('build', ['buildjs','csso']);
+gulp.task('build', ['makecore','csso']);
 
 gulp.task('default', ['pack']);
