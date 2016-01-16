@@ -2,7 +2,6 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var sass = require('gulp-sass');
-var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 var csso = require('gulp-csso');
 var size = require('gulp-size');
@@ -10,7 +9,8 @@ var uglify = require('gulp-uglify');
 var webpack = require('webpack-stream');
 var concat = require('gulp-concat');
 var header = require('gulp-header');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
+var exec = require('child_process').exec;
 
 gulp.task('style', function () {
     return gulp.src('./style/touch-imagelightbox.scss')
@@ -67,7 +67,7 @@ gulp.task('lint', function() {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('uglify', ['pack'], function() {
+gulp.task('uglify', ['pack', 'clean'], function() {
     return gulp.src('./demo/LightBox.*.js')
         .pipe(uglify())
         .pipe(rename({suffix: ".min"}))
@@ -112,6 +112,10 @@ gulp.task('csso', ['style'], function() {
         .pipe(csso())
         .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('clean', function() {
+    exec('rm -r dist');
 });
 
 gulp.task('build', ['makecore','csso']);
