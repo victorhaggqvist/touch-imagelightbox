@@ -64,7 +64,7 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 
 	var log = __webpack_require__(3);
 
-	log.setDefaultLevel(log.levels.DEBUG);
+	//log.setDefaultLevel(log.levels.DEBUG);
 
 	var LightBox = function () {
 	    function LightBox(targetSelector) {
@@ -86,8 +86,7 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 	            enableKeyboard: true,
 	            quitOnEnd: false,
 	            quitOnImgClick: false,
-	            quitOnDocClick: true,
-	            requestFullscreenOnMobile: true
+	            quitOnDocClick: true
 	        };
 
 	        this.options = Object.assign(options, defaultOptions);
@@ -168,7 +167,7 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 	            var _this2 = this;
 
 	            log.debug('quitLightbox');
-	            if (this.image === null) return false;
+	            if (this.image === null) return;
 
 	            _CSSUtil.CSSUtil.setTransitionProperty(this.image, 'opacity ' + this.options.animationSpeed / 1000 + 's linear');
 	            setTimeout(function () {
@@ -193,11 +192,6 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 	            if (!this.isTargetValid(element)) return true;
 
 	            event.preventDefault();
-
-	            //if (LightBox.HAS_TOUCH) {
-	            //    log.debug('requesting fullscreen');
-	            //    document.body.webkitRequestFullscreen()
-	            //}
 
 	            if (this.inProgress) return;
 
