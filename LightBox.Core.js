@@ -64,7 +64,7 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 
 	var log = __webpack_require__(3);
 
-	log.setDefaultLevel(log.levels.DEBUG);
+	//log.setDefaultLevel(log.levels.DEBUG);
 
 	var LightBox = function () {
 	    function LightBox(targetSelector) {
@@ -188,7 +188,13 @@ var LightBox = LightBox || {}; LightBox["Core"] =
 	        key: 'onImageClick',
 	        value: function onImageClick(event) {
 	            log.debug(event);
-	            var element = event.srcElement.parentElement;
+	            var srcElement = event.srcElement;
+
+	            if (srcElement === undefined) {
+	                srcElement = event.originalTarget;
+	            }
+
+	            var element = srcElement.parentElement;
 	            if (!this.isTargetValid(element)) return true;
 
 	            event.preventDefault();
