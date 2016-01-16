@@ -2,6 +2,8 @@
 @import "plugins/activity-indicator";
 @import "plugins/overlay";
 @import "plugins/closebutton";
+@import "plugins/navigation";
+@import "plugins/caption";
 
 @mixin touch-action($value) {
   -ms-touch-action: $value;
@@ -21,61 +23,3 @@ html {
   z-index: 10000;
 }
 
-#imagelightbox-caption {
-  background-color: #666;
-  bottom: 0;
-  color: #fff;
-  left: 0;
-  padding: 10px;
-  position: fixed;
-  right: 0;
-  text-align: center;
-  z-index: 10001;
-}
-
-// The nav bubbles
-#imagelightbox-nav {
-  border-radius: 20px;
-  translateX: -50%;
-
-  background-color: #444;
-  background-color: rgba(0, 0, 0, .5);
-  bottom: 60px; // 60
-  left: 50%;
-  padding: 5px 2px 1px;
-  position: fixed;
-  z-index: 10001;
-
-  a {
-    border-radius: 50%;
-    border: 1px solid #fff;
-    display: inline-block;
-    height: 20px;
-    margin: 0 5px;
-    width: 20px;
-  }
-
-  .active {
-    background-color: #fff;
-  }
-}
-
-#imagelightbox-caption,
-#imagelightbox-nav {
-  -moz-animation: fade-in .25s linear;
-  -o-animation: fade-in .25s linear;
-  -webkit-animation: fade-in .25s linear;
-  animation: fade-in .25s linear;
-}
-
-@keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@media only screen and (max-width: 660px) {
-
-  #imagelightbox-nav {
-    bottom: 20px;
-  }
-}

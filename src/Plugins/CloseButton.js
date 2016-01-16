@@ -4,7 +4,7 @@
  */
 
 
-export class CloseButton {
+export default class CloseButton {
 
     constructor(closeOnDocumentClick=false) {
         this.closeOnDocumentClick = closeOnDocumentClick;

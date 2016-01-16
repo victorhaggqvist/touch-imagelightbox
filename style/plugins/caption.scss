@@ -1,12 +1,13 @@
-
-#imagelightbox-overlay {
-    background: rgba(255, 255, 255, .9);
+#imagelightbox-caption {
+    background-color: #666;
     bottom: 0;
+    color: #fff;
     left: 0;
+    padding: 10px;
     position: fixed;
     right: 0;
-    top: 0;
-    z-index: 9998;
+    text-align: center;
+    z-index: 10001;
     animation: fade-in .25s linear;
 }
 
@@ -18,3 +19,4 @@
         opacity: 1;
     }
 }
+

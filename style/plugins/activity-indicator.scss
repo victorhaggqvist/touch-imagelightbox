@@ -8,7 +8,6 @@ $loadingbox-size: 20px;
 #imagelightbox-loading {
     box-shadow: rgba(0, 0, 0, .75) 0 0 $loadingbox-size*2;
 
-    background: #444; // Fallback
     background: rgba(0, 0, 0, .5);
     height: $loadingbox-size;
     left: 50%;
@@ -45,6 +44,10 @@ $loadingbox-size: 20px;
 }
 
 @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

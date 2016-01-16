@@ -3,12 +3,11 @@
  * @since 2016-01-16
  */
 
-export class Captions {
+export default class Captions {
 
     constructor() {
         this.element = document.createElement('div');
         this.element.id = 'imagelightbox-caption';
-        //this.element.innerHTML = 'Close';
     }
 
     register(lightbox) {

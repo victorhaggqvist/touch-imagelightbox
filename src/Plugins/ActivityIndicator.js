@@ -4,7 +4,7 @@
  * @since 2016-01-14
  */
 
-export class ActivityIndicator {
+export default class ActivityIndicator {
 
     constructor() {
         this.element = document.createElement('div');
@@ -24,7 +24,6 @@ export class ActivityIndicator {
 
     activityIndicatorOn() {
         document.body.appendChild(this.element);
-        //$('<div id="imagelightbox-loading"><div></div></div>' ).appendTo('body');
     }
 
     activityIndicatorOff() {

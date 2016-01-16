@@ -13,6 +13,7 @@ $closebutton-size: 40px;
     transition: color .3s ease;
     width: $closebutton-size;
     z-index: 10002;
+    cursor: pointer;
 
     &:hover {
         background-color: #111;
@@ -42,8 +43,12 @@ $closebutton-size: 40px;
 }
 
 @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @media only screen and (max-width: 660px) {

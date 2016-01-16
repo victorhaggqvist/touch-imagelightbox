@@ -3,7 +3,7 @@
  * @since 2016-01-14
  */
 
-export class Overlay {
+export default class Overlay {
 
     constructor() {
         this.element = document.createElement('div');

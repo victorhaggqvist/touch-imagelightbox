@@ -9,7 +9,7 @@ var log = require('loglevel');
 
 log.setDefaultLevel(log.levels.DEBUG);
 
-export class LightBox {
+export default class LightBox {
 
     constructor(targetSelector, options = {}) {
         log.info('LightBox');
@@ -117,9 +117,8 @@ export class LightBox {
     }
 
     onImageClick(event) {
-        console.log(event);
+        log.debug(event);
         let element = event.srcElement.parentElement;
-        //console.log(this.isTargetValid(element));
         if (!this.isTargetValid(element)) return true;
 
         event.preventDefault();
@@ -374,6 +373,13 @@ export class LightBox {
 
         return false;
     };
+
+    switchToIndex(index) {
+        if (index >= 0 && index < this.targets.length){
+            this.target = this.targets[index];
+            this.loadImage();
+        }
+    }
 
     windowResizeListener() {
         log.debug('resized');
