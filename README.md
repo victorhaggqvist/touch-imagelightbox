@@ -5,7 +5,8 @@
 Imagelightbox was originally created by [Osvaldas Valutis](http://osvaldas.info/image-lightbox-responsive-touch-friendly), though it was only accessible through his site. I put it here to make it more maintainable.
 
 ## How to get it
-Via bower.io `bower install touch-imagelightbox`
+
+    yarn add touch-imagelightbox
 
 Or with git `git clone https://github.com/victorhaggqvist/touch-imagelightbox.git`
 
