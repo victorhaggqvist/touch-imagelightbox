@@ -1,14 +1,11 @@
 {
   "name": "touch-imagelightbox",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "A touch-friendly image lightbox",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "github.com/victorhaggqvist/touch-imagelightbox"
-  },
+  "repository": "github.com/victorhaggqvist/touch-imagelightbox",
   "keywords": [
     "lightbox",
     "touch",
